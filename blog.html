@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>打工人的一天 · 碎片里的光</title>
+<style>
+:root{
+  --ink:#1a1a2e; --ink-muted:#4a4a6a; --ink-light:#7a7a9a;
+  --paper:#faf9f6; --paper-alt:#f0ebe0; --paper-dark:#e8e0d0;
+  --accent:#c8a87a; --accent-dark:#a8885a; --accent-light:#e8d8c0;
+  --line:#d8d0c0; --shadow:rgba(26,26,46,0.08);
+  --font-serif:"Noto Serif SC","Source Serif Pro",Georgia,serif;
+  --font-sans:"Noto Sans SC","Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-mono:"JetBrains Mono","Fira Code",monospace;
+  --space-1:0.25rem; --space-2:0.5rem; --space-3:1rem; --space-4:1.5rem;
+  --space-5:2rem; --space-6:3rem; --space-7:4rem; --space-8:6rem;
+  --radius:4px; --transition:0.3s ease;
+  --max-width:720px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --ink:#f0ebe0; --ink-muted:#c8b8a0; --ink-light:#9a8a7a;
+    --paper:#1a1a2e; --paper-alt:#22223a; --paper-dark:#2a2a4a;
+    --accent:#d8b88a; --accent-dark:#c8a87a; --accent-light:#5a4a3a;
+    --line:#3a3a5a; --shadow:rgba(0,0,0,0.3);
+  }
+}
+*, *::before, *::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth; -webkit-font-smoothing:antialiased}
+body{
+  font-family:var(--font-sans); font-size:16px; line-height:1.8;
+  color:var(--ink); background:var(--paper);
+  min-height:100vh; display:flex; flex-direction:column;
+}
+a{color:var(--accent); text-decoration:none; border-bottom:1px solid transparent; transition:border-color var(--transition)}
+a:hover{border-bottom-color:var(--accent)}
+img{max-width:100%; height:auto; border-radius:var(--radius)}
+
+/* Layout */
+.site-header,.site-main,.site-footer{
+  width:100%; max-width:var(--max-width); margin:0 auto; padding:0 var(--space-4);
+}
+.site-header{padding-top:var(--space-7); padding-bottom:var(--space-5)}
+.site-main{flex:1; padding-bottom:var(--space-8)}
+.site-footer{padding:var(--space-5) var(--space-4); border-top:1px solid var(--line)}
+
+/* Typography */
+h1,h2,h3,h4{font-family:var(--font-serif); font-weight:500; line-height:1.4; color:var(--ink)}
+h1{font-size:clamp(2rem,5vw,3rem); letter-spacing:-0.02em; margin-bottom:var(--space-2)}
+h2{font-size:clamp(1.5rem,3.5vw,2rem); margin:var(--space-6) 0 var(--space-3)}
+h3{font-size:clamp(1.15rem,2.5vw,1.35rem); margin:var(--space-5) 0 var(--space-2)}
+p{margin-bottom:var(--space-3); text-wrap:pretty}
+.lead{font-family:var(--font-serif); font-size:1.15rem; line-height:1.9; color:var(--ink-muted); margin-bottom:var(--space-4)}
+.small{font-size:0.875rem; color:var(--ink-light)}
+
+/* Header */
+.site-title{font-family:var(--font-serif); font-size:clamp(1.5rem,4vw,2.5rem); font-weight:400; color:var(--ink); margin-bottom:var(--space-1)}
+.site-tagline{font-size:0.95rem; color:var(--ink-light); letter-spacing:0.05em; text-transform:lowercase}
+.nav{display:flex; gap:var(--space-5); margin-top:var(--space-5); flex-wrap:wrap}
+.nav a{font-size:0.9rem; color:var(--ink-muted); padding-bottom:2px}
+.nav a:hover{color:var(--accent); border-bottom-color:var(--accent)}
+.nav a.current{color:var(--ink); border-bottom-color:var(--ink); pointer-events:none}
+
+/* Post Card */
+.post-card{background:var(--paper-alt); border:1px solid var(--line); border-radius:var(--radius); padding:var(--space-5); margin-bottom:var(--space-4); transition:box-shadow var(--transition), transform var(--transition)}
+.post-card:hover{box-shadow:0 8px 24px var(--shadow); transform:translateY(-2px)}
+.post-meta{display:flex; gap:var(--space-3); flex-wrap:wrap; margin-bottom:var(--space-2); font-size:0.8rem; color:var(--ink-light)}
+.post-meta time{font-family:var(--font-mono)}
+.post-meta .tag{background:var(--accent-light); color:var(--accent-dark); padding:2px 8px; border-radius:999px; font-size:0.7rem; letter-spacing:0.03em}
+.post-title{font-family:var(--font-serif); font-size:1.35rem; font-weight:500; color:var(--ink); margin-bottom:var(--space-2); line-height:1.4}
+.post-excerpt{color:var(--ink-muted); line-height:1.8; margin-bottom:var(--space-3)}
+.post-link{display:inline-flex; align-items:center; gap:6px; font-size:0.9rem; color:var(--accent); font-weight:500}
+.post-link::after{content:"→"; transition:transform var(--transition)}
+.post-link:hover::after{transform:translateX(4px)}
+
+/* Single Post */
+.post-header{margin-bottom:var(--space-6); padding-bottom:var(--space-5); border-bottom:1px solid var(--line)}
+.post-header .post-meta{margin-bottom:var(--space-3)}
+.post-header h1{margin-bottom:var(--space-2)}
+.post-content{font-family:var(--font-serif); font-size:1.05rem; line-height:2}
+.post-content p{margin-bottom:var(--space-4)}
+.post-content p:last-child{margin-bottom:0}
+.post-content .sensory{color:var(--accent-dark); font-weight:500}
+.post-content .pause{display:block; height:1.5em}
+.post-footer{margin-top:var(--space-7); padding-top:var(--space-5); border-top:1px solid var(--line)}
+.post-tags{display:flex; gap:var(--space-2); flex-wrap:wrap}
+.post-tags a{background:var(--paper-alt); border:1px solid var(--line); padding:4px 12px; border-radius:999px; font-size:0.8rem; color:var(--ink-muted)}
+.post-tags a:hover{background:var(--accent-light); border-color:var(--accent); color:var(--accent-dark)}
+
+/* Footer */
+.site-footer p{margin:0; font-size:0.85rem; color:var(--ink-light); text-align:center}
+.site-footer a{color:var(--ink-muted)}
+.site-footer a:hover{color:var(--accent)}
+
+/* Home Hero */
+.hero{margin-bottom:var(--space-7)}
+.hero p{font-family:var(--font-serif); font-size:1.1rem; line-height:1.9; color:var(--ink-muted)}
+
+/* Back link */
+.back-link{display:inline-flex; align-items:center; gap:6px; margin-bottom:var(--space-5); font-size:0.9rem; color:var(--ink-muted)}
+.back-link::before{content:"←"}
+.back-link:hover{color:var(--accent); border-bottom-color:transparent}
+
+/* Tweaks panel */
+.tweaks{position:fixed; bottom:var(--space-4); right:var(--space-4); z-index:100; background:var(--paper-alt); border:1px solid var(--line); border-radius:var(--radius); padding:var(--space-3); box-shadow:0 8px 24px var(--shadow); font-size:0.8rem}
+.tweaks summary{cursor:pointer; color:var(--ink-muted); font-weight:500}
+.tweaks[open] summary{color:var(--ink); margin-bottom:var(--space-2)}
+.tweaks label{display:flex; align-items:center; gap:8px; margin:6px 0; cursor:pointer}
+.tweaks input[type="range"]{width:120px}
+.tweaks .reset{margin-top:var(--space-2); padding:4px 10px; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); cursor:pointer; font-size:0.75rem}
+.tweaks .reset:hover{background:var(--accent-light); border-color:var(--accent)}
+
+/* Responsive */
+@media (max-width:600px){
+  :root{--max-width:100%}
+  .site-header,.site-main,.site-footer{padding-left:var(--space-3); padding-right:var(--space-3)}
+  .tweaks{bottom:var(--space-2); right:var(--space-2); left:var(--space-2)}
+}
+@media (prefers-reduced-motion:reduce){
+  *, *::before, *::after{animation:none !important; transition:none !important}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1 class="site-title">打工人的一天</h1>
+  <p class="site-tagline">碎片里的光，攒着给明天</p>
+  <nav class="nav">
+    <a href="blog.html" class="current">日记</a>
+    <a href="blog.html?tag=副业">副业</a>
+    <a href="blog.html?tag=治愈">治愈</a>
+    <a href="blog.html?tag=碎碎念">碎碎念</a>
+    <a href="https://github.com/yww009/tom" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<main class="site-main">
+  <!-- 这里可以切换：首页列表 或 单篇文章 -->
+  <!-- 默认显示首页列表 -->
+  <section class="hero">
+    <p>风从梧桐叶缝里漏下来，在旧巷的青石板上，铺了一地碎得晃眼的夏天。这里记录打工人偷来的那些瞬间——不宏大，但真实。</p>
+  </section>
+
+  <article class="post-card">
+    <div class="post-meta">
+      <time datetime="2026-07-30">2026-07-30</time>
+      <span class="tag">打工人的一天</span>
+      <span class="tag">治愈</span>
+    </div>
+    <h2 class="post-title">早晨六点半的闹钟响第二遍</h2>
+    <p class="post-excerpt">窗外的天还压着一层没褪干净的蓝。出门前在玄关换鞋，听见厨房水壶咕嘟咕嘟冒泡，是昨晚忘了关的那壶水……</p>
+    <a href="blog.html?post=001" class="post-link">阅读全文</a>
+  </article>
+
+  <article class="post-card">
+    <div class="post-meta">
+      <time datetime="2026-07-28">2026-07-28</time>
+      <span class="tag">副业</span>
+      <span class="tag">碎碎念</span>
+    </div>
+    <h2 class="post-title">晚上 11 点，世界安静了，副业才刚刚开始</h2>
+    <p class="post-excerpt">娃睡了，世界终于安静下来。台灯暖光落下来，摊开笔记本，写了两行今天的进度。窗外的月亮悄悄爬到了楼顶上……</p>
+    <a href="blog.html?post=002" class="post-link">阅读全文</a>
+  </article>
+
+  <article class="post-card">
+    <div class="post-meta">
+      <time datetime="2026-07-25">2026-07-25</time>
+      <span class="tag">治愈</span>
+      <span class="tag">碎碎念</span>
+    </div>
+    <h2 class="post-title">老巷口的修鞋匠，和被拉长的棉线</h2>
+    <p class="post-excerpt">戴着老花镜穿针，脚边的收音机咿咿呀呀唱着旧戏。时光在这里慢得像被拉长的棉线，让人想多停留一会儿……</p>
+    <a href="blog.html?post=003" class="post-link">阅读全文</a>
+  </article>
+
+  <article class="post-card">
+    <div class="post-meta">
+      <time datetime="2026-07-22">2026-07-22</time>
+      <span class="tag">打工人的一天</span>
+    </div>
+    <h2 class="post-title">下午三点最难熬，键盘声变成了白噪音</h2>
+    <p class="post-excerpt">眼睛盯着屏幕，脑子里已经在想晚上吃啥。下班那一刻是每天最亮的一瞬——地铁玻璃上映出自己的影子……</p>
+    <a href="blog.html?post=004" class="post-link">阅读全文</a>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <p>用 <a href="https://github.com/yww009/tom" target="_blank" rel="noopener">Hermes Agent</a> 搭建 · 字体：Noto Serif SC / Noto Sans SC · <a href="https://github.com/yww009/tom/blob/main/STYLE.md" target="_blank" rel="noopener">风格定义</a></p>
+</footer>
+
+<details class="tweaks">
+  <summary>🎨 Tweaks</summary>
+  <label>字号 <input type="range" id="fs" min="14" max="20" value="16" step="1"></label>
+  <label>行高 <input type="range" id="lh" min="1.5" max="2.2" value="1.8" step="0.1"></label>
+  <label>最大宽度 <input type="range" id="mw" min="600" max="900" value="720" step="40"></label>
+  <label><input type="checkbox" id="dark" onchange="toggleDark(this.checked)"> 强制深色</label>
+  <button class="reset" onclick="resetTweaks()">重置</button>
+</details>
+
+<script>
+// 简单的单页路由：根据 URL 显示列表或文章
+const posts = {
+  "001": {
+    title: "早晨六点半的闹钟响第二遍",
+    date: "2026-07-30",
+    tags: ["打工人的一天","治愈"],
+    content: [
+      "窗外的天还压着一层没褪干净的蓝。",
+      "出门前在玄关换鞋，听见厨房水壶咕嘟咕嘟冒泡，是昨晚忘了关的那壶水。地铁口的早风刮过来，带着一点点深秋的凉，把没睡醒的脸刮清醒了一点。",
+      "工位上的咖啡杯印还在，昨天走得太急忘了洗。中午食堂的阿姨照例多舀了一勺，\"瘦了，多吃点\"，没人问她累不累，但有人记得她还没吃饭。",
+      "<span class=\"pause\"></span>",
+      "下午三点最难熬，眼睛盯着屏幕，耳边的键盘声忽然就变成了白噪音。下班那一刻是每天最亮的一瞬——地铁玻璃上映出自己的影子，才发现今天穿的外套，是早上随手抓的那件。",
+      "副业搞钱的人，没有真正的\"下班\"。",
+      "晚上 11 点，娃睡了，世界终于安静下来。台灯暖光落下来，摊开笔记本，写了两行今天的副业进度。窗外的月亮悄悄爬到了楼顶上，跟那天发给我的第 12 句一样。",
+      "——不是不累，是累的时候，刚好也在为自己攒。"
+    ]
+  },
+  "002": {
+    title: "晚上 11 点，世界安静了，副业才刚刚开始",
+    date: "2026-07-28",
+    tags: ["副业","碎碎念"],
+    content: [
+      "娃睡了，世界终于安静下来。台灯暖光落下来，摊开笔记本，写了两行今天的副业进度。窗外的月亮悄悄爬到了楼顶上。",
+      "这一天：早上在地铁上刷到一个选题，中午食堂排队时在手机上记了三句开头，下午开会摸鱼时把大纲列好了。",
+      "副业不是额外的负担，是唯一属于自己的呼吸孔。没人催稿，没人考核，只有自己跟自己较劲。",
+      "冰箱里还躺着半罐没喝完的冰汽水，气泡在玻璃杯里往上冒，一声声轻响，像在为这几个小时鼓掌。",
+      "攒下来的钱，不多，但每一笔都写着自己的名字。"
+    ]
+  },
+  "003": {
+    title: "老巷口的修鞋匠，和被拉长的棉线",
+    date: "2026-07-25",
+    tags: ["治愈","碎碎念"],
+    content: [
+      "戴着老花镜穿针，脚边的收音机咿咿呀呀唱着旧戏。时光在这里慢得像被拉长的棉线。",
+      "把鞋递过去时，指尖碰到他满是茧子的手心，粗糙、温热、稳当。",
+      "\"这鞋底还能再穿两年，别换。\" 他头也不抬，动作利索得像在做手术。",
+      "等鞋的二十分钟，没刷手机。看他在灯光下弯腰、穿针、拉线、打结，每一个动作都沉得住气。",
+      "取鞋时多给了五块，他说不用。我把钱塞进他工具盒里最角落的格子，像塞进一个不想被遗忘的秘密。",
+      "走出巷口，风里混着桂花香，脚下踩实了，心也实了。"
+    ]
+  },
+  "004": {
+    title: "下午三点最难熬，键盘声变成了白噪音",
+    date: "2026-07-22",
+    tags: ["打工人的一天"],
+    content: [
+      "眼睛盯着屏幕，脑子里已经在想晚上吃啥。下班那一刻是每天最亮的一瞬。",
+      "会议室的空调吹得人发冷，PPT 翻到第 37 页，有人在角落偷偷回微信。我把笔记本合上，在空白页画了只猫——蜷在墙头上，正慢悠悠舔着沾了落日的爪子。",
+      "地铁玻璃上映出自己的影子，才发现今天穿的外套，是早上随手抓的那件。口袋里还揣着半包没吃完的糖炒栗子，攥在手心，余温还在。",
+      "路过便利店买罐冰汽水，气泡炸开在舌尖，甜度刚好冲淡了一天的咸味。",
+      "到家不开灯，靠着阳台发呆。春天的第一阵风吹过，挂着的白衬衫晃了晃，沾了满襟刚开的茉莉的香。"
+    ]
+  }
+};
+
+function renderPost(id){
+  const p = posts[id]; if(!p) return renderList();
+  const main = document.querySelector('.site-main');
+  main.innerHTML = `
+    <a href="blog.html" class="back-link">返回列表</a>
+    <article>
+      <header class="post-header">
+        <div class="post-meta">
+          <time datetime="${p.date}">${p.date}</time>
+          ${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
+        </div>
+        <h1>${p.title}</h1>
+      </header>
+      <div class="post-content">
+        ${p.content.map(c=>`<p>${c}</p>`).join('')}
+      </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+          ${p.tags.map(t=>`<a href="blog.html?tag=${encodeURIComponent(t)}">${t}</a>`).join('')}
+        </div>
+      </footer>
+    </article>
+  `;
+}
+
+function renderList(){
+  const main = document.querySelector('.site-main');
+  main.innerHTML = `
+    <section class="hero">
+      <p>风从梧桐叶缝里漏下来，在旧巷的青石板上，铺了一地碎得晃眼的夏天。这里记录打工人偷来的那些瞬间——不宏大，但真实。</p>
+    </section>
+    <article class="post-card">
+      <div class="post-meta"><time datetime="2026-07-30">2026-07-30</time><span class="tag">打工人的一天</span><span class="tag">治愈</span></div>
+      <h2 class="post-title">早晨六点半的闹钟响第二遍</h2>
+      <p class="post-excerpt">窗外的天还压着一层没褪干净的蓝。出门前在玄关换鞋，听见厨房水壶咕嘟咕嘟冒泡，是昨晚忘了关的那壶水……</p>
+      <a href="blog.html?post=001" class="post-link">阅读全文</a>
+    </article>
+    <article class="post-card">
+      <div class="post-meta"><time datetime="2026-07-28">2026-07-28</time><span class="tag">副业</span><span class="tag">碎碎念</span></div>
+      <h2 class="post-title">晚上 11 点，世界安静了，副业才刚刚开始</h2>
+      <p class="post-excerpt">娃睡了，世界终于安静下来。台灯暖光落下来，摊开笔记本，写了两行今天的进度。窗外的月亮悄悄爬到了楼顶上……</p>
+      <a href="blog.html?post=002" class="post-link">阅读全文</a>
+    </article>
+    <article class="post-card">
+      <div class="post-meta"><time datetime="2026-07-25">2026-07-25</time><span class="tag">治愈</span><span class="tag">碎碎念</span></div>
+      <h2 class="post-title">老巷口的修鞋匠，和被拉长的棉线</h2>
+      <p class="post-excerpt">戴着老花镜穿针，脚边的收音机咿咿呀呀唱着旧戏。时光在这里慢得像被拉长的棉线，让人想多停留一会儿……</p>
+      <a href="blog.html?post=003" class="post-link">阅读全文</a>
+    </article>
+    <article class="post-card">
+      <div class="post-meta"><time datetime="2026-07-22">2026-07-22</time><span class="tag">打工人的一天</span></div>
+      <h2 class="post-title">下午三点最难熬，键盘声变成了白噪音</h2>
+      <p class="post-excerpt">眼睛盯着屏幕，脑子里已经在想晚上吃啥。下班那一刻是每天最亮的一瞬——地铁玻璃上映出自己的影子……</p>
+      <a href="blog.html?post=004" class="post-link">阅读全文</a>
+    </article>
+  `;
+}
+
+// 路由
+const params = new URLSearchParams(location.search);
+if(params.has('post')){
+  renderPost(params.get('post'));
+}else{
+  renderList();
+}
+
+// Tweaks 持久化
+const root = document.documentElement;
+const fs = document.getElementById('fs');
+const lh = document.getElementById('lh');
+const mw = document.getElementById('mw');
+const dark = document.getElementById('dark');
+
+function applyTweaks(){
+  root.style.setProperty('--font-size-base', fs.value + 'px');
+  document.body.style.fontSize = fs.value + 'px';
+  document.body.style.lineHeight = lh.value;
+  root.style.setProperty('--max-width', mw.value + 'px');
+  if(dark.checked){ document.documentElement.setAttribute('data-theme','dark') }
+  else{ document.documentElement.removeAttribute('data-theme') }
+}
+
+['fs','lh','mw','dark'].forEach(id=>{
+  const el = document.getElementById(id);
+  const saved = localStorage.getItem('tweak_'+id);
+  if(saved !== null){
+    if(el.type==='checkbox'){ el.checked = saved==='true'; }
+    else{ el.value = saved; }
+  }
+  el.addEventListener('input',()=>{
+    localStorage.setItem('tweak_'+id, el.type==='checkbox' ? el.checked : el.value);
+    applyTweaks();
+  });
+});
+applyTweaks();
+
+function resetTweaks(){
+  ['fs','lh','mw','dark'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el.type==='checkbox'){ el.checked=false; }
+    else if(id==='fs'){ el.value=16; }
+    else if(id==='lh'){ el.value=1.8; }
+    else if(id==='mw'){ el.value=720; }
+    localStorage.removeItem('tweak_'+id);
+  });
+  applyTweaks();
+}
+</script>
+</body>
+</html>
