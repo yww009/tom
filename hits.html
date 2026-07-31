@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>打工人的一天 · 碎片里的光</title>
+<title>爆款库 · 打工人的一天</title>
 <style>
 :root{
   --ink:#1a1a2e; --ink-muted:#4a4a6a; --ink-light:#7a7a9a;
@@ -125,27 +125,63 @@ p{margin-bottom:var(--space-3); text-wrap:pretty}
 @media (prefers-reduced-motion:reduce){
   *, *::before, *::after{animation:none !important; transition:none !important}
 }
+
 </style>
 </head>
 <body>
 <header class="site-header">
-  <h1 class="site-title">打工人的一天</h1>
-  <p class="site-tagline">碎片里的光，攒着给明天</p>
-  <nav class="nav">
-    <a href="blog.html" class="current">日记</a>
-    <a href="topics.html">选题库</a>
-    <a href="hits.html">爆款库</a>
-    <a href="https://github.com/yww009/tom" target="_blank" rel="noopener">GitHub</a>
-  </nav>
+<h1 class="site-title">打工人的一天</h1>
+<p class="site-tagline">碎片里的光,攒着给明天</p>
+<nav class="nav">
+<a href="blog.html">日记</a>
+<a href="topics.html">选题库</a>
+<a href="hits.html" class="current">爆款库</a>
+<a href="https://github.com/yww009/tom" target="_blank" rel="noopener">GitHub</a>
+</nav>
 </header>
 <main class="site-main">
 <div class="with-sidebar">
 <div>
+<h1 style="font-size:1.8rem">爆款库</h1>
+<p class="lead">4 篇拆解: 钩子 / 结构 / 亮点 / 原文金句。把别人的爆款变成自己的写作肌肉。</p>
+<div class="filter-bar">
+<button class="filter-btn active" onclick="filterTag('all',this)">全部</button>
+<button class="filter-btn" onclick="filterTag('打工人的一天',this)">打工人的一天</button>
+<button class="filter-btn" onclick="filterTag('副业',this)">副业</button>
+<button class="filter-btn" onclick="filterTag('治愈',this)">治愈</button>
+<button class="filter-btn" onclick="filterTag('碎碎念',this)">碎碎念</button>
 </div>
+<div class="hit-list">
+<div class="hit-item" data-tag="打工人的一天"><div class="hit-meta"><span class="badge">打工人的一天</span><span style="color:var(--ink-light)">sample</span><span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-light)">H01</span></div><h3 class="hit-title">打工人的一天 从闹钟响第三遍才开始</h3><p class="hit-hook"><strong>hook:</strong> reverse opener, then up, use the third alarm to pull emotion</p><p class="hit-hook"><strong>structure:</strong> 3 sections: tired morning / desk detail / side hustle ending</p><p class="hit-hook"><strong>highlights:</strong> sensory details (coffee cup ring / canteen aunt / 3pm keyboard)</p><div style="background:var(--paper);border-left:2px solid var(--accent);padding:var(--space-2) var(--space-3);margin:var(--space-3) 0;font-family:var(--font-serif);color:var(--ink-muted)"><ul style="list-style:none;padding:0;margin:0"><li>工位上的咖啡杯印还在,昨天走得太急忘了洗。</li><li>下午三点最难熬,眼睛盯着屏幕,耳边的键盘声忽然就变成了白噪音。</li></ul></div><p class="hit-notes">[sample] please replace with your real hit post</p></div><div class="hit-item" data-tag="副业"><div class="hit-meta"><span class="badge">副业</span><span style="color:var(--ink-light)">sample</span><span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-light)">H02</span></div><h3 class="hit-title">副业搞钱的第一年 我到底攒下了什么</h3><p class="hit-hook"><strong>hook:</strong> no income flex, only emotion flex, avoid showing-off vibe</p><p class="hit-hook"><strong>structure:</strong> checklist: 3 saves, save money / save skill / save courage</p><p class="hit-hook"><strong>highlights:</strong> restrained tone, each paragraph max 4 lines, lots of whitespace</p><div style="background:var(--paper);border-left:2px solid var(--accent);padding:var(--space-2) var(--space-3);margin:var(--space-3) 0;font-family:var(--font-serif);color:var(--ink-muted)"><ul style="list-style:none;padding:0;margin:0"><li>攒下来的钱,不多,但每一笔都写着自己的名字。</li><li>——不是不累,是累的时候,刚好也在为自己攒。</li></ul></div><p class="hit-notes">[sample] key lesson: no slogan, let details carry emotion</p></div><div class="hit-item" data-tag="治愈"><div class="hit-meta"><span class="badge">治愈</span><span style="color:var(--ink-light)">sample</span><span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-light)">H03</span></div><h3 class="hit-title">老巷口的修鞋匠 和被拉长的棉线</h3><p class="hit-hook"><strong>hook:</strong> metaphor title, make time concrete</p><p class="hit-hook"><strong>structure:</strong> portrait: action -> dialogue -> detail -> ending</p><p class="hit-hook"><strong>highlights:</strong> touch (callused palm), sound (radio singing), smell (osmanthus)</p><div style="background:var(--paper);border-left:2px solid var(--accent);padding:var(--space-2) var(--space-3);margin:var(--space-3) 0;font-family:var(--font-serif);color:var(--ink-muted)"><ul style="list-style:none;padding:0;margin:0"><li>戴着老花镜穿针,脚边的收音机咿咿呀呀唱着旧戏,时光在这里慢得像被拉长的棉线。</li><li>走出巷口,风里混着桂花香,脚下踩实了,心也实了。</li></ul></div><p class="hit-notes">[sample] healing-style benchmark, reuse the person + place + sensory template</p></div><div class="hit-item" data-tag="碎碎念"><div class="hit-meta"><span class="badge">碎碎念</span><span style="color:var(--ink-light)">sample</span><span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-light)">H04</span></div><h3 class="hit-title">深夜台灯下 写两行副业进度</h3><p class="hit-hook"><strong>hook:</strong> late-night scene + concrete action, build a ritual feel</p><p class="hit-hook"><strong>structure:</strong> still-life: lamp -> notebook -> moon</p><p class="hit-hook"><strong>highlights:</strong> style-sample sentence 12 variant, moon as emotion anchor</p><div style="background:var(--paper);border-left:2px solid var(--accent);padding:var(--space-2) var(--space-3);margin:var(--space-3) 0;font-family:var(--font-serif);color:var(--ink-muted)"><ul style="list-style:none;padding:0;margin:0"><li>台灯暖光落下来,摊开笔记本,写了两行今天的副业进度。</li><li>窗外的月亮悄悄爬到了楼顶上,跟那天你发给我的第 12 句一样。</li></ul></div><p class="hit-notes">[sample] extreme short-sentence rhythm, whitespace beats content</p></div>
+</div>
+</div>
+<aside class="sidebar">
+  <h3>📚 站点</h3>
+  <ul>
+    <li><a href="blog.html" id="nav-blog">日记</a></li>
+    <li><a href="topics.html" id="nav-topics">选题库</a></li>
+    <li><a href="hits.html" id="nav-hits">爆款库</a></li>
+    <li><a href="https://github.com/yww009/tom" target="_blank" rel="noopener">GitHub 源码</a></li>
+  </ul>
+  <h3>🏷️ 标签</h3>
+  <ul>
+    <li><a href="blog.html?tag=打工人的一天">打工人的一天</a></li>
+    <li><a href="blog.html?tag=副业">副业</a></li>
+    <li><a href="blog.html?tag=治愈">治愈</a></li>
+    <li><a href="blog.html?tag=碎碎念">碎碎念</a></li>
+  </ul>
+  <h3>📊 进度</h3>
+  <ul style="font-size:0.85rem">
+    <li>已发布：4 篇</li>
+    <li>选题池：12 个</li>
+    <li>爆款库：8 篇</li>
+  </ul>
+</aside>
+
 </div>
 </main>
 <footer class="site-footer">
-<p>用 <a href="https://github.com/yww009/tom" target="_blank" rel="noopener">Hermes Agent</a> 搭建 · 字体：Noto Serif SC / Noto Sans SC · <a href="https://github.com/yww009/tom/blob/main/STYLE.md" target="_blank" rel="noopener">风格定义</a></p>
+<p>用 <a href="https://github.com/yww009/tom" target="_blank" rel="noopener">Hermes Agent</a> 搭建 · <a href="https://github.com/yww009/tom/blob/main/STYLE.md" target="_blank" rel="noopener">风格定义</a></p>
 </footer>
 <details class="tweaks">
 <summary>🎨 Tweaks</summary>
@@ -162,51 +198,13 @@ function apply(){document.body.style.fontSize=fs.value+'px';document.body.style.
 apply();
 function resetTweaks(){['fs','lh','mw','dark'].forEach(id=>{const el=document.getElementById(id);if(el.type==='checkbox'){el.checked=false}else if(id==='fs'){el.value=16}else if(id==='lh'){el.value=1.8}else if(id==='mw'){el.value=720}localStorage.removeItem('tweak_'+id)});apply()}
 
-const posts = {
-  '001':{title:'早晨六点半的闹钟响第二遍',date:'2026-07-30',tags:['打工人的一天','治愈'],content:[
-    '窗外的天还压着一层没褪干净的蓝。',
-    '出门前在玄关换鞋，听见厨房水壶咕嘟咕嘟冒泡，是昨晚忘了关的那壶水。地铁口的早风刮过来，带着一点点深秋的凉，把没睡醒的脸刮清醒了一点。',
-    '工位上的咖啡杯印还在，昨天走得太急忘了洗。中午食堂的阿姨照例多舀了一勺，"瘦了，多吃点"，没人问她累不累，但有人记得她还没吃饭。',
-    '<span class="pause"></span>',
-    '下午三点最难熬，眼睛盯着屏幕，耳边的键盘声忽然就变成了白噪音。下班那一刻是每天最亮的一瞬——地铁玻璃映出自己的影子，才发现今天穿的外套，是早上随手抓的那件。',
-    '副业搞钱的人，没有真正的"下班"。',
-    '晚上 11 点，娃睡了，世界终于安静下来。台灯暖光落下来，摊开笔记本，写了两行今天的副业进度。窗外的月亮悄悄爬到了楼顶上，跟那天发给我的第 12 句一样。',
-    '——不是不累，是累的时候，刚好也在为自己攒。'
-  ]},
-  '002':{title:'晚上 11 点，世界安静了，副业才刚刚开始',date:'2026-07-28',tags:['副业','碎碎念'],content:[
-    '娃睡了，世界终于安静下来。台灯暖光落下来，摊开笔记本，写了两行今天的副业进度。窗外的月亮悄悄爬到了楼顶上。',
-    '这一天：早上在地铁上刷到一个选题，中午食堂排队时在手机上记了三句开头，下午开会摸鱼时把大纲列好了。',
-    '副业不是额外的负担，是唯一属于自己的呼吸孔。没人催稿，没人考核，只有自己跟自己较劲。',
-    '冰箱里还躺着半罐没喝完的冰汽水，气泡在玻璃杯里往上冒，一声声轻响，像在为这几个小时鼓掌。',
-    '攒下来的钱，不多，但每一笔都写着自己的名字。'
-  ]},
-  '003':{title:'老巷口的修鞋匠，和被拉长的棉线',date:'2026-07-25',tags:['治愈','碎碎念'],content:[
-    '戴着老花镜穿针，脚边的收音机咿咿呀呀唱着旧戏。时光在这里慢得像被拉长的棉线。',
-    '把鞋递过去时，指尖碰到他满是茧子的手心，粗糙、温热、稳当。',
-    '"这鞋底还能再穿两年，别换。" 他头也不抬，动作利索得像在做手术。',
-    '等鞋的二十分钟，没刷手机。看他在灯光下弯腰、穿针、拉线、打结，每一个动作都沉得住气。',
-    '取鞋时多给了五块，他说不用。我把钱塞进他工具盒里最角落的格子，像塞进一个不想被遗忘的秘密。',
-    '走出巷口，风里混着桂花香，脚下踩实了，心也实了。'
-  ]},
-  '004':{title:'下午三点最难熬，键盘声变成了白噪音',date:'2026-07-22',tags:['打工人的一天'],content:[
-    '眼睛盯着屏幕，脑子里已经在想晚上吃啥。下班那一刻是每天最亮的一瞬。',
-    '会议室的空调吹得人发冷，PPT 翻到第 37 页，有人在角落偷偷回微信。我把笔记本合上，在空白页画了只猫——蜷在墙头上，正慢悠悠舔着沾了落日的爪子。',
-    '地铁玻璃映出自己的影子，才发现今天穿的外套，是早上随手抓的那件。口袋里还揣着半包没吃完的糖炒栗子，攥在手心，余温还在。',
-    '路过便利店买罐冰汽水，气泡炸开在舌尖，甜度刚好冲淡了一天的咸味。',
-    '到家不开灯，靠着阳台发呆。春天的第一阵风吹过，挂着的白衬衫晃了晃，沾了满襟刚开的茉莉的香。'
-  ]}
-};
-const params = new URLSearchParams(location.search);
-if(params.has('post')){
-  const p = posts[params.get('post')];
-  if(p){
-    document.getElementById('post-list').style.display='none';
-    const d = document.getElementById('post-detail');
-    d.style.display='block';
-    d.innerHTML = '<a href="blog.html" class="back-link">返回列表</a><article><header class="post-header"><div class="post-meta"><time datetime="'+p.date+'">'+p.date+'</time>'+p.tags.map(function(t){return'<span class="tag">'+t+'</span>'}).join('')+'</div><h1>'+p.title+'</h1></header><div class="post-content">'+p.content.map(function(c){return'<p>'+c+'</p>'}).join('')+'</div></article>';
-  }
+function filterTag(tag, btn){
+  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  document.querySelectorAll('.hit-item').forEach(function(it){
+    it.style.display = (tag==='all' || it.dataset.tag===tag) ? 'block' : 'none';
+  });
 }
-
 </script>
 </body>
 </html>
