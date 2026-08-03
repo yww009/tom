@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>打工人的一天 · 碎片里的光</title>
+    <link>https://yww009.github.io/tom/blog.html</link>
+    <description>25-35 岁打工人偷来的瞬间 —— 副业、治愈、碎碎念。</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 03 Aug 2026 07:58:52 +0000</lastBuildDate>
+    <atom:link href="https://yww009.github.io/tom/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>早晨六点半的闹钟响第二遍</title>
+      <link>https://yww009.github.io/tom/blog.html?post=001</link>
+      <guid isPermaLink="true">https://yww009.github.io/tom/blog.html?post=001</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <category>打工人的一天</category>
+      <description>窗外的天还压着一层没褪干净的蓝。出门前在玄关换鞋，听见厨房水壶咕嘟咕嘟冒泡，是昨晚忘了关的那壶水。地铁口的早风刮过来，带着一点点深秋的凉，把没睡醒的脸刮清醒了一点。</description>
+    </item>
+    <item>
+      <title>晚上 11 点，世界安静了，副业才刚刚开始</title>
+      <link>https://yww009.github.io/tom/blog.html?post=002</link>
+      <guid isPermaLink="true">https://yww009.github.io/tom/blog.html?post=002</guid>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+      <category>副业</category>
+      <description>娃睡了，世界终于安静下来。台灯暖光落下来，摊开笔记本，写了两行今天的副业进度。窗外的月亮悄悄爬到了楼顶上。</description>
+    </item>
+    <item>
+      <title>老巷口的修鞋匠，和被拉长的棉线</title>
+      <link>https://yww009.github.io/tom/blog.html?post=003</link>
+      <guid isPermaLink="true">https://yww009.github.io/tom/blog.html?post=003</guid>
+      <pubDate>Sat, 25 Jul 2026 00:00:00 +0000</pubDate>
+      <category>治愈</category>
+      <description>戴着老花镜穿针，脚边的收音机咿咿呀呀唱着旧戏。时光在这里慢得像被拉长的棉线。</description>
+    </item>
+    <item>
+      <title>下午三点最难熬，键盘声变成了白噪音</title>
+      <link>https://yww009.github.io/tom/blog.html?post=004</link>
+      <guid isPermaLink="true">https://yww009.github.io/tom/blog.html?post=004</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      <category>打工人的一天</category>
+      <description>眼睛盯着屏幕，脑子里已经在想晚上吃啥。下班那一刻是每天最亮的一瞬——地铁玻璃映出自己的影子。</description>
+    </item>
+  </channel>
+</rss>

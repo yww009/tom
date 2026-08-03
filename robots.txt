@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yww009.github.io/tom/sitemap.xml
