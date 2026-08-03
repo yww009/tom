@@ -3,6 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍂</text></svg>">
+<meta name="description" content="12 个真实可写的选题：从钩子到结构一气呵成。按 tag 筛选，按状态看进度。">
+<meta name="keywords" content="打工人,副业搞钱,治愈系,小红书文案,散文">
+<meta name="author" content="yww009">
+<meta property="og:title" content="选题库 · 打工人的一天">
+<meta property="og:description" content="12 个真实可写的选题：从钩子到结构一气呵成。按 tag 筛选，按状态看进度。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yww009.github.io/tom/topics.html">
+<meta property="og:image" content="https://yww009.github.io/tom/assets/bg-1.webp">
+<meta name="twitter:card" content="summary_large_image">
+
 <title>
 <link rel="alternate" type="application/rss+xml" title="打工人的一天 RSS" href="feed.xml">选题库 · 打工人的一天</title>
 <style>
@@ -127,6 +138,23 @@ p{margin-bottom:var(--space-3); text-wrap:pretty}
   *, *::before, *::after{animation:none !important; transition:none !important}
 }
 
+.fade-bg body{animation:fadeBg 1.2s ease both}
+@keyframes fadeBg{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.fade-bg body{animation:none}}
+
+
+.back-top{
+  position:fixed;bottom:var(--space-4);left:var(--space-4);
+  width:42px;height:42px;border-radius:50%;
+  background:var(--paper-alt);border:1px solid var(--line);
+  color:var(--ink-muted);font-size:1.2rem;
+  cursor:pointer;opacity:0;pointer-events:none;
+  transition:opacity .3s ease,transform .3s ease,color .3s ease;
+  z-index:99;
+}
+.back-top.show{opacity:1;pointer-events:auto}
+.back-top:hover{color:var(--accent);transform:translateY(-2px)}
+
 </style>
 </head>
 <body>
@@ -201,5 +229,12 @@ function resetTweaks(){['fs','lh','mw','dark'].forEach(id=>{const el=document.ge
 
 function filterTag(tag, btn){document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");document.querySelectorAll(".topic-item").forEach(function(it){it.style.display = (tag==="all" || it.dataset.tag===tag) ? "block" : "none";});}
 </script>
+
+window.addEventListener('scroll',function(){
+  var b=document.querySelector('.back-top');if(!b)return;
+  if(window.scrollY>400){b.classList.add('show')}else{b.classList.remove('show')}
+});
+function toTop(){window.scrollTo({top:0,behavior:'smooth'})}
+<button class="back-top" onclick="toTop()" aria-label="回到顶部">↑</button>
 </body>
 </html>

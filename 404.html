@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>走丢了 · 打工人的一天</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍂</text></svg>">
+<link rel="alternate" type="application/rss+xml" title="打工人的一天 RSS" href="feed.xml">
+<meta name="description" content="这一页走丢了。回到日记继续吧。">
+<style>
+:root{
+  --ink:#1a1a2e; --ink-muted:#4a4a6a; --paper:#faf8f5;
+  --accent:#a8885a; --line:#d8d0c0;
+  --font-serif:"Noto Serif SC",Georgia,serif;
+  --font-sans:"Noto Sans SC",-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--ink:#f0ebe0;--ink-muted:#c8b8a0;--paper:#1a1a2e;--accent:#d8b88a;--line:#3a3a5a;}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:var(--font-sans);color:var(--ink);background:var(--paper);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:2rem;
+  background-image:
+    linear-gradient(rgba(250,248,245,0.85),rgba(250,248,245,0.95)),
+    url('assets/bg-1.webp');
+  background-size:cover;background-position:center;
+}
+@media (prefers-color-scheme:dark){
+  body{background-image:linear-gradient(rgba(26,26,46,0.88),rgba(26,26,46,0.95)),url('assets/bg-1.webp');}
+}
+h1{font-family:var(--font-serif);font-size:clamp(3rem,10vw,7rem);font-weight:400;color:var(--accent);line-height:1;margin-bottom:1rem}
+p{font-family:var(--font-serif);font-size:1.1rem;color:var(--ink-muted);max-width:480px;line-height:1.9;margin-bottom:2rem}
+.nav{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center}
+.nav a{
+  color:var(--ink);text-decoration:none;
+  padding:8px 20px;border:1px solid var(--line);border-radius:999px;
+  font-size:0.9rem;transition:all .3s ease;
+}
+.nav a:hover{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+.footer{margin-top:3rem;font-size:0.8rem;color:var(--ink-muted);opacity:0.7}
+.fade-in{animation:fade .8s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.fade-in{animation:none}}
+</style>
+</head>
+<body>
+<main class="fade-in">
+<h1>404</h1>
+<p>这一页像早晨没赶上闹钟的地铁，已经走远了。<br>别急，回家看看还有别的路。</p>
+<nav class="nav">
+<a href="blog.html">回到日记</a>
+<a href="topics.html">选题库</a>
+<a href="hits.html">爆款库</a>
+</nav>
+<p class="footer">打工人的一天 · 碎片里的光，攒着给明天</p>
+</main>
+</body>
+</html>

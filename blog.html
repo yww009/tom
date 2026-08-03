@@ -3,6 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍂</text></svg>">
+<meta name="description" content="25-35 岁打工人偷来的瞬间：副业、治愈、碎碎念。短句、画面感、感官细节、留白、治愈不矫情。">
+<meta name="keywords" content="打工人,副业搞钱,治愈系,小红书文案,散文">
+<meta name="author" content="yww009">
+<meta property="og:title" content="打工人的一天 · 碎片里的光">
+<meta property="og:description" content="25-35 岁打工人偷来的瞬间：不宏大，但真实。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yww009.github.io/tom/blog.html">
+<meta property="og:image" content="https://yww009.github.io/tom/assets/bg-4.webp">
+<meta name="twitter:card" content="summary_large_image">
+
 <title>
 <link rel="alternate" type="application/rss+xml" title="打工人的一天 RSS" href="feed.xml">打工人的一天 · 碎片里的光</title>
 <style>
@@ -139,6 +150,24 @@ body.detail-mode{
   }
 }
 
+
+.fade-bg body{animation:fadeBg 1.2s ease both}
+@keyframes fadeBg{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.fade-bg body{animation:none}}
+
+
+.back-top{
+  position:fixed;bottom:var(--space-4);left:var(--space-4);
+  width:42px;height:42px;border-radius:50%;
+  background:var(--paper-alt);border:1px solid var(--line);
+  color:var(--ink-muted);font-size:1.2rem;
+  cursor:pointer;opacity:0;pointer-events:none;
+  transition:opacity .3s ease,transform .3s ease,color .3s ease;
+  z-index:99;
+}
+.back-top.show{opacity:1;pointer-events:auto}
+.back-top:hover{color:var(--accent);transform:translateY(-2px)}
+
 </style>
 </head>
 <body>
@@ -222,5 +251,12 @@ if(params.has('post')){
 }
 
 </script>
+
+window.addEventListener('scroll',function(){
+  var b=document.querySelector('.back-top');if(!b)return;
+  if(window.scrollY>400){b.classList.add('show')}else{b.classList.remove('show')}
+});
+function toTop(){window.scrollTo({top:0,behavior:'smooth'})}
+<button class="back-top" onclick="toTop()" aria-label="回到顶部">↑</button>
 </body>
 </html>
