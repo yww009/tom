@@ -185,6 +185,40 @@ blockquote.gold:hover .copy-btn{opacity:1}
 blockquote.gold .copy-btn:hover{color:var(--accent)}
 blockquote.gold .copy-btn.copied{color:#3a8a4a;border-color:#3a8a4a}
 
+
+/* 搜索框 */
+.search-box{
+  margin-bottom:var(--space-4);position:relative;
+}
+.search-input{
+  width:100%;padding:10px 14px 10px 38px;
+  background:var(--paper-alt);border:1px solid var(--line);
+  border-radius:var(--radius);font-size:0.95rem;color:var(--ink);
+  font-family:var(--font-sans);
+}
+.search-input:focus{outline:none;border-color:var(--accent);background:var(--paper)}
+.search-icon{
+  position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  color:var(--ink-light);font-size:0.9rem;pointer-events:none;
+}
+.search-results{
+  position:absolute;top:100%;left:0;right:0;
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius);margin-top:4px;
+  max-height:360px;overflow-y:auto;z-index:50;
+  box-shadow:0 8px 24px var(--shadow);display:none;
+}
+.search-results.show{display:block}
+.search-result{
+  padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;
+}
+.search-result:hover{background:var(--paper-alt)}
+.search-result:last-child{border-bottom:none}
+.search-result h4{font-family:var(--font-serif);font-size:1rem;margin:0 0 4px;color:var(--ink)}
+.search-result p{margin:0;font-size:0.85rem;color:var(--ink-muted);line-height:1.5}
+.search-result mark{background:var(--accent-light);color:var(--accent-dark);padding:0 2px;border-radius:2px}
+.search-empty{padding:20px 14px;color:var(--ink-light);text-align:center;font-size:0.9rem}
+
 </style>
 </head>
 <body>
@@ -201,6 +235,13 @@ blockquote.gold .copy-btn.copied{color:#3a8a4a;border-color:#3a8a4a}
 <main class="site-main">
 <div class="with-sidebar">
 <div>
+
+<div class="search-box">
+  <span class="search-icon">🔍</span>
+  <input type="search" class="search-input" id="search-input" placeholder="搜索文章 / 选题 / 爆款..." autocomplete="off">
+  <div class="search-results" id="search-results"></div>
+</div>
+
 <h1 style="font-size:1.8rem">选题库</h1>
 <p class="lead">12 个候选选题，从钩子到结构一气呵成。点击 tag 筛选，按状态看进度。</p>
 <div class="filter-bar">
@@ -288,6 +329,51 @@ function copyGold(btn){
     });
   }
 }
+
+
+var fuse;
+var searchData = [
+  {id:"001",title:"早晨六点半的闹钟响第二遍",url:"blog.html?post=001",body:"窗外的天还没褪干净的蓝 水壶咕嘟咕嘟 咖啡杯印 食堂阿姨 键盘声白噪音 副业搞钱 月亮楼顶"},
+  {id:"002",title:"晚上 11 点 世界安静了 副业才刚刚开始",url:"blog.html?post=002",body:"娃睡了 台灯暖光 笔记本 副业进度 月亮爬到楼顶 通勤选题 呼吸孔"},
+  {id:"003",title:"老巷口的修鞋匠 和被拉长的棉线",url:"blog.html?post=003",body:"老花镜穿针 收音机咿咿呀呀 旧戏 棉线 茧子手心 桂花香 治愈"},
+  {id:"004",title:"下午三点最难熬 键盘声变成了白噪音",url:"blog.html?post=004",body:"白噪音 会议室空调 PPT 第37页 猫蜷墙头 落日 糖炒栗子 茉莉阳台"}
+];
+
+function initSearch(){
+  if(typeof Fuse==="undefined") return;
+  fuse = new Fuse(searchData,{
+    keys:["title","body"],
+    threshold:0.4,
+    ignoreLocation:true,
+    includeMatches:true,
+    minMatchCharLength:2
+  });
+  var input=document.getElementById("search-input");
+  var box=document.getElementById("search-results");
+  if(!input) return;
+  input.addEventListener("input",function(){
+    var q=input.value.trim();
+    if(q.length<2){box.classList.remove("show");return}
+    var results=fuse.search(q,{limit:6});
+    if(!results.length){
+      box.innerHTML='<div class="search-empty">没有匹配的文章</div>';
+    } else {
+      box.innerHTML=results.map(function(r){
+        var title=r.item.title;
+        var body=r.item.body.substring(0,60);
+        return '<div class="search-result" onclick="location.href=\''+r.item.url+'\'">'
+          +'<h4>'+title+'</h4>'
+          +'<p>'+body+'...</p></div>';
+      }).join("");
+    }
+    box.classList.add("show");
+  });
+  input.addEventListener("blur",function(){setTimeout(function(){box.classList.remove("show")},200)});
+  input.addEventListener("focus",function(){if(input.value.length>=2)box.classList.add("show")});
+}
+if(document.readyState==="loading"){
+  document.addEventListener("DOMContentLoaded",initSearch);
+} else { initSearch(); }
 
 </body>
 </html>
