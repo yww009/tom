@@ -168,6 +168,36 @@ body.detail-mode{
 .back-top.show{opacity:1;pointer-events:auto}
 .back-top:hover{color:var(--accent);transform:translateY(-2px)}
 
+
+/* 阅读进度条 */
+.read-progress{
+  position:fixed;top:0;left:0;height:3px;width:0;
+  background:linear-gradient(90deg,var(--accent),#d8b88a);
+  z-index:200;transition:width .1s ease;
+}
+/* 金句 blockquote 样式 + 复制按钮 */
+blockquote.gold{
+  position:relative;
+  margin:var(--space-4) 0;
+  padding:var(--space-3) var(--space-4);
+  background:var(--paper-alt);
+  border-left:3px solid var(--accent);
+  font-family:var(--font-serif);
+  color:var(--ink);
+  font-style:normal;
+  border-radius:0 var(--radius) var(--radius) 0;
+}
+blockquote.gold .copy-btn{
+  position:absolute;top:8px;right:8px;
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius);padding:3px 10px;
+  font-size:.75rem;color:var(--ink-muted);
+  cursor:pointer;opacity:0;transition:opacity .3s ease,color .3s ease;
+}
+blockquote.gold:hover .copy-btn{opacity:1}
+blockquote.gold .copy-btn:hover{color:var(--accent)}
+blockquote.gold .copy-btn.copied{color:#3a8a4a;border-color:#3a8a4a}
+
 </style>
 </head>
 <body>
@@ -258,5 +288,28 @@ window.addEventListener('scroll',function(){
 });
 function toTop(){window.scrollTo({top:0,behavior:'smooth'})}
 <button class="back-top" onclick="toTop()" aria-label="回到顶部">↑</button>
+
+/* 阅读进度条 */
+(function(){
+  var p=document.createElement('div');p.className='read-progress';
+  document.body.appendChild(p);
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var scrolled=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    p.style.width=Math.min(100,Math.max(0,scrolled))+'%';
+  });
+})();
+/* 金句复制 */
+function copyGold(btn){
+  var q=btn.parentNode.querySelector('.quote-text')||btn.previousSibling;
+  var text=(q.textContent||q.innerText).trim();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){
+      btn.textContent='已复制';btn.classList.add('copied');
+      setTimeout(function(){btn.textContent='复制';btn.classList.remove('copied');},1500);
+    });
+  }
+}
+
 </body>
 </html>
