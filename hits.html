@@ -396,5 +396,14 @@ if("serviceWorker" in navigator){
   });
 }
 
+
+/* 图片懒加载（兜底，原生 loading=lazy 已生效） */
+document.addEventListener("DOMContentLoaded",function(){
+  document.querySelectorAll("img").forEach(function(img){
+    if(!img.hasAttribute("loading")) img.setAttribute("loading","lazy");
+    if(!img.hasAttribute("decoding")) img.setAttribute("decoding","async");
+  });
+});
+
 </body>
 </html>

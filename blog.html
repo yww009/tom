@@ -232,6 +232,21 @@ blockquote.gold .copy-btn.copied{color:#3a8a4a;border-color:#3a8a4a}
 .search-result mark{background:var(--accent-light);color:var(--accent-dark);padding:0 2px;border-radius:2px}
 .search-empty{padding:20px 14px;color:var(--ink-light);text-align:center;font-size:0.9rem}
 
+
+.toc{
+  background:var(--paper-alt);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:var(--space-3) var(--space-4);
+  margin-bottom:var(--space-4);
+  font-size:0.9rem;
+}
+.toc-title{font-family:var(--font-sans);font-weight:600;color:var(--ink);margin-bottom:8px;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em}
+.toc ol{margin:0;padding-left:20px;color:var(--ink-muted)}
+.toc li{margin:4px 0;line-height:1.6}
+.toc a{color:var(--ink-muted);border-bottom:none}
+.toc a:hover{color:var(--accent)}
+
 </style>
 
 <link rel="manifest" href="manifest.json">
@@ -241,6 +256,11 @@ blockquote.gold .copy-btn.copied{color:#3a8a4a;border-color:#3a8a4a}
 <meta name="apple-mobile-web-app-title" content="打工人">
 <link rel="apple-touch-icon" href="assets/icon-192.png">
 
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap"></noscript>
 </head>
 <body>
 <header class="site-header">
@@ -412,6 +432,37 @@ if("serviceWorker" in navigator){
     navigator.serviceWorker.register("sw.js").catch(function(e){console.log("SW err",e)});
   });
 }
+
+
+document.addEventListener("DOMContentLoaded",function(){
+  document.querySelectorAll("img").forEach(function(img){
+    if(!img.hasAttribute("loading")) img.setAttribute("loading","lazy");
+    if(!img.hasAttribute("decoding")) img.setAttribute("decoding","async");
+  });
+});
+
+function buildToc(){
+  var d=document.getElementById("post-detail");
+  if(!d) return;
+  var hs=d.querySelectorAll("h2,h3");
+  if(hs.length<2) return;
+  var toc=document.createElement("aside");
+  toc.className="toc";
+  toc.innerHTML='<div class="toc-title">目录</div><ol></ol>';
+  var ol=toc.querySelector("ol");
+  hs.forEach(function(h,i){
+    if(!h.id) h.id="h"+i;
+    var li=document.createElement("li");
+    var a=document.createElement("a");
+    a.href="#"+h.id;a.textContent=h.textContent;
+    li.appendChild(a);ol.appendChild(li);
+  });
+  var header=d.querySelector(".post-header");
+  if(header) header.parentNode.insertBefore(toc,header.nextSibling);
+}
+if(document.readyState==="loading"){
+  document.addEventListener("DOMContentLoaded",buildToc);
+} else { buildToc(); }
 
 </body>
 </html>
