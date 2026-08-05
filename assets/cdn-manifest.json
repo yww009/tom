@@ -1,0 +1,22 @@
+{
+  "name": "tom-cdn",
+  "version": "1.0.0",
+  "description": "Mirror of yww009/tom static assets via jsDelivr CDN",
+  "cdn_base": "https://cdn.jsdelivr.net/gh/yww009/tom@main/",
+  "origin_base": "https://yww009.github.io/tom/",
+  "mirrored_paths": [
+    "assets/bg-1.webp",
+    "assets/bg-2.webp",
+    "assets/bg-3.webp",
+    "assets/bg-4.webp",
+    "assets/bg-5.webp",
+    "assets/bg-6.webp",
+    "assets/icon-192.png",
+    "assets/icon-512.png",
+    "assets/js/fuse.min.js",
+    "assets/js/stats.js",
+    "feed.xml",
+    "sitemap.xml"
+  ],
+  "notes": "jsDelivr 自动缓存 GitHub release/tag。这里用 @main 跟踪最新。SW 缓存策略保持 origin，CDN 作为浏览器直接访问 fallback。"
+}

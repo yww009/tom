@@ -11,11 +11,11 @@
 <meta property="og:description" content="25-35 岁打工人偷来的瞬间：不宏大，但真实。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://yww009.github.io/tom/blog.html">
-<meta property="og:image" content="https://yww009.github.io/tom/assets/bg-4.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yww009/tom@main/assets/bg-4.webp">
 <meta name="twitter:card" content="summary_large_image">
 
 <title>
-<link rel="alternate" type="application/rss+xml" title="打工人的一天 RSS" href="feed.xml">打工人的一天 · 碎片里的光</title>
+<link rel="alternate" type="application/rss+xml" title="打工人的一天 RSS" href="https://cdn.jsdelivr.net/gh/yww009/tom@main/feed.xml">打工人的一天 · 碎片里的光</title>
 <style>
 :root{
   --ink:#1a1a2e; --ink-muted:#4a4a6a; --ink-light:#7a7a9a;
@@ -42,7 +42,7 @@
 html{scroll-behavior:smooth; -webkit-font-smoothing:antialiased}
 body{
   font-family:var(--font-sans); font-size:16px; line-height:1.8;
-  color:var(--ink); background-color:var(--paper);background-image:linear-gradient(rgba(250,248,245,0.78),rgba(250,248,245,0.92)),url(assets/bg-4.webp);background-size:cover;background-position:center;background-attachment:fixed;}
+  color:var(--ink); background-color:var(--paper);background-image:linear-gradient(rgba(250,248,245,0.78),rgba(250,248,245,0.92)),url(https://cdn.jsdelivr.net/gh/yww009/tom@main/assets/bg-4.webp);background-size:cover;background-position:center;background-attachment:fixed;}
   min-height:100vh; display:flex; flex-direction:column;
 }
 a{color:var(--accent); text-decoration:none; border-bottom:1px solid transparent; transition:border-color var(--transition)}
@@ -109,7 +109,7 @@ p{margin-bottom:var(--space-3); text-wrap:pretty}
 .tweaks[open] summary{color:var(--ink); margin-bottom:var(--space-2)}
 .tweaks label{display:flex; align-items:center; gap:8px; margin:6px 0; cursor:pointer}
 .tweaks input[type="range"]{width:120px}
-.tweaks .reset{margin-top:var(--space-2); padding:4px 10px; background-color:var(--paper);background-image:linear-gradient(rgba(250,248,245,0.78),rgba(250,248,245,0.92)),url(assets/bg-4.webp);background-size:cover;background-position:center;background-attachment:fixed;} border:1px solid var(--line); border-radius:var(--radius); cursor:pointer; font-size:0.75rem}
+.tweaks .reset{margin-top:var(--space-2); padding:4px 10px; background-color:var(--paper);background-image:linear-gradient(rgba(250,248,245,0.78),rgba(250,248,245,0.92)),url(https://cdn.jsdelivr.net/gh/yww009/tom@main/assets/bg-4.webp);background-size:cover;background-position:center;background-attachment:fixed;} border:1px solid var(--line); border-radius:var(--radius); cursor:pointer; font-size:0.75rem}
 .tweaks .reset:hover{background:var(--accent-light); border-color:var(--accent)}
 
 .topic-list,.hit-list{display:flex; flex-direction:column; gap:var(--space-3)}
@@ -139,14 +139,14 @@ p{margin-bottom:var(--space-3); text-wrap:pretty}
 }
 
 body.detail-mode{
-  background-image:linear-gradient(rgba(250,248,245,0.86),rgba(250,248,245,0.95)),url(assets/bg-6.webp)!important;
+  background-image:linear-gradient(rgba(250,248,245,0.86),rgba(250,248,245,0.95)),url(https://cdn.jsdelivr.net/gh/yww009/tom@main/assets/bg-6.webp)!important;
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
 }
 @media (prefers-color-scheme:dark){
   body.detail-mode{
-    background-image:linear-gradient(rgba(26,26,46,0.88),rgba(26,26,46,0.96)),url(assets/bg-6.webp)!important;
+    background-image:linear-gradient(rgba(26,26,46,0.88),rgba(26,26,46,0.96)),url(https://cdn.jsdelivr.net/gh/yww009/tom@main/assets/bg-6.webp)!important;
   }
 }
 
@@ -249,12 +249,12 @@ blockquote.gold .copy-btn.copied{color:#3a8a4a;border-color:#3a8a4a}
 
 </style>
 
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="https://cdn.jsdelivr.net/gh/yww009/tom@main/manifest.json">
 <meta name="theme-color" content="#a8885a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="打工人">
-<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/yww009/tom@main/assets/icon-192.png">
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -380,7 +380,7 @@ function copyGold(btn){
   }
 }
 
-<script src="assets/js/fuse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/yww009/tom@main/assets/js/fuse.min.js"></script>
 
 var fuse;
 var searchData = [
@@ -464,5 +464,6 @@ if(document.readyState==="loading"){
   document.addEventListener("DOMContentLoaded",buildToc);
 } else { buildToc(); }
 
+<script src="assets/js/stats.js"></script>
 </body>
 </html>
