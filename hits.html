@@ -220,6 +220,14 @@ blockquote.gold .copy-btn.copied{color:#3a8a4a;border-color:#3a8a4a}
 .search-empty{padding:20px 14px;color:var(--ink-light);text-align:center;font-size:0.9rem}
 
 </style>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#a8885a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="打工人">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+
 </head>
 <body>
 <header class="site-header">
@@ -380,6 +388,13 @@ function initSearch(){
 if(document.readyState==="loading"){
   document.addEventListener("DOMContentLoaded",initSearch);
 } else { initSearch(); }
+
+
+if("serviceWorker" in navigator){
+  window.addEventListener("load",function(){
+    navigator.serviceWorker.register("sw.js").catch(function(e){console.log("SW err",e)});
+  });
+}
 
 </body>
 </html>

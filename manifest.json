@@ -1,0 +1,26 @@
+{
+  "name": "打工人的一天 · 碎片里的光",
+  "short_name": "打工人",
+  "description": "25-35 岁打工人偷来的瞬间：副业、治愈、碎碎念",
+  "start_url": "./blog.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf8f5",
+  "theme_color": "#a8885a",
+  "lang": "zh-CN",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
