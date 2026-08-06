@@ -247,7 +247,16 @@ blockquote.gold .copy-btn.copied{color:#3a8a4a;border-color:#3a8a4a}
 .toc a{color:var(--ink-muted);border-bottom:none}
 .toc a:hover{color:var(--accent)}
 
-</style>
+
+.post-images{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:var(--space-4);
+}
+.post-images img{
+  width:100%;height:140px;object-fit:cover;border-radius:4px;
+  background:var(--paper-alt);
+}
+@media(max-width:600px){.post-images{grid-template-columns:1fr}}
+
 
 <link rel="manifest" href="https://cdn.jsdelivr.net/gh/yww009/tom@main/manifest.json">
 <meta name="theme-color" content="#a8885a">
@@ -305,7 +314,7 @@ apply();
 function resetTweaks(){['fs','lh','mw','dark'].forEach(id=>{const el=document.getElementById(id);if(el.type==='checkbox'){el.checked=false}else if(id==='fs'){el.value=16}else if(id==='lh'){el.value=1.8}else if(id==='mw'){el.value=720}localStorage.removeItem('tweak_'+id)});apply()}
 
 const posts = {
-  '001':{title:'早晨六点半的闹钟响第二遍',date:'2026-07-30',tags:['打工人的一天','治愈'],content:[
+  '001':{title:'早晨六点半的闹钟响第二遍',date:'2026-07-30',tags:['打工人的一天','治愈'],images:['scene-shoes.webp','scene-coffee.webp','scene-subway.webp'],content:[
     '窗外的天还压着一层没褪干净的蓝。',
     '出门前在玄关换鞋，听见厨房水壶咕嘟咕嘟冒泡，是昨晚忘了关的那壶水。地铁口的早风刮过来，带着一点点深秋的凉，把没睡醒的脸刮清醒了一点。',
     '工位上的咖啡杯印还在，昨天走得太急忘了洗。中午食堂的阿姨照例多舀了一勺，"瘦了，多吃点"，没人问她累不累，但有人记得她还没吃饭。',
@@ -315,14 +324,14 @@ const posts = {
     '晚上 11 点，娃睡了，世界终于安静下来。台灯暖光落下来，摊开笔记本，写了两行今天的副业进度。窗外的月亮悄悄爬到了楼顶上，跟那天发给我的第 12 句一样。',
     '——不是不累，是累的时候，刚好也在为自己攒。'
   ]},
-  '002':{title:'晚上 11 点，世界安静了，副业才刚刚开始',date:'2026-07-28',tags:['副业','碎碎念'],content:[
+  '002':{title:'晚上 11 点，世界安静了，副业才刚刚开始',date:'2026-07-28',tags:['副业','碎碎念'],images:['scene-lamp.webp','scene-moon.webp','scene-chestnut.webp'],content:[
     '娃睡了，世界终于安静下来。台灯暖光落下来，摊开笔记本，写了两行今天的副业进度。窗外的月亮悄悄爬到了楼顶上。',
     '这一天：早上在地铁上刷到一个选题，中午食堂排队时在手机上记了三句开头，下午开会摸鱼时把大纲列好了。',
     '副业不是额外的负担，是唯一属于自己的呼吸孔。没人催稿，没人考核，只有自己跟自己较劲。',
     '冰箱里还躺着半罐没喝完的冰汽水，气泡在玻璃杯里往上冒，一声声轻响，像在为这几个小时鼓掌。',
     '攒下来的钱，不多，但每一笔都写着自己的名字。'
   ]},
-  '003':{title:'老巷口的修鞋匠，和被拉长的棉线',date:'2026-07-25',tags:['治愈','碎碎念'],content:[
+  '003':{title:'老巷口的修鞋匠，和被拉长的棉线',date:'2026-07-25',tags:['治愈','碎碎念'],images:['scene-coin.webp','scene-leaf.webp','scene-alley.webp'],content:[
     '戴着老花镜穿针，脚边的收音机咿咿呀呀唱着旧戏。时光在这里慢得像被拉长的棉线。',
     '把鞋递过去时，指尖碰到他满是茧子的手心，粗糙、温热、稳当。',
     '"这鞋底还能再穿两年，别换。" 他头也不抬，动作利索得像在做手术。',
@@ -330,7 +339,7 @@ const posts = {
     '取鞋时多给了五块，他说不用。我把钱塞进他工具盒里最角落的格子，像塞进一个不想被遗忘的秘密。',
     '走出巷口，风里混着桂花香，脚下踩实了，心也实了。'
   ]},
-  '004':{title:'下午三点最难熬，键盘声变成了白噪音',date:'2026-07-22',tags:['打工人的一天'],content:[
+  '004':{title:'下午三点最难熬，键盘声变成了白噪音',date:'2026-07-22',tags:['打工人的一天'],images:['scene-coffee.webp','scene-cat.webp','scene-rice.webp'],content:[
     '眼睛盯着屏幕，脑子里已经在想晚上吃啥。下班那一刻是每天最亮的一瞬。',
     '会议室的空调吹得人发冷，PPT 翻到第 37 页，有人在角落偷偷回微信。我把笔记本合上，在空白页画了只猫——蜷在墙头上，正慢悠悠舔着沾了落日的爪子。',
     '地铁玻璃映出自己的影子，才发现今天穿的外套，是早上随手抓的那件。口袋里还揣着半包没吃完的糖炒栗子，攥在手心，余温还在。',
@@ -345,7 +354,8 @@ if(params.has('post')){
     document.getElementById('post-list').style.display='none';
     const d = document.getElementById('post-detail');
     d.style.display='block';
-    document.body.classList.add('detail-mode');d.innerHTML = '<a href="blog.html" class="back-link">返回列表</a><article><header class="post-header"><div class="post-meta"><time datetime="'+p.date+'">'+p.date+'</time>'+p.tags.map(function(t){return'<span class="tag">'+t+'</span>'}).join('')+'</div><h1>'+p.title+'</h1></header><div class="post-content">'+p.content.map(function(c){return'<p>'+c+'</p>'}).join('')+'</div></article>';
+    document.body.classList.add('detail-mode');var imgsHtml = p.images ? '<div class="post-images">' + p.images.map(function(i){return '<img src="assets/"+i+' loading="lazy" alt="文章配图">';}).join('') + '</div>' : '';
+    d.innerHTML = '<a href="blog.html" class="back-link">返回列表</a><article><header class="post-header">' + imgsHtml<div class="post-meta"><time datetime="'+p.date+'">'+p.date+'</time>'+p.tags.map(function(t){return'<span class="tag">'+t+'</span>'}).join('')+'</div><h1>'+p.title+'</h1></header><div class="post-content">'+p.content.map(function(c){return'<p>'+c+'</p>'}).join('')+'</div></article>';
   }
 }
 
