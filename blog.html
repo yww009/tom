@@ -501,6 +501,61 @@ function calcReadingTime(content) {
   return minutes + ' 分钟阅读';
 }
 
+
+function renderRelated(currentId, currentTags) {
+  var allPosts = window.posts || [];
+  var current = allPosts.find(function(p){return p.id === currentId});
+  if (!current || !current.tags) return '';
+  var related = allPosts.filter(function(p) {
+    if (p.id === currentId) return false;
+    return p.tags && p.tags.some(function(t) { return current.tags.indexOf(t) !== -1; });
+  }).slice(0, 3);
+  if (related.length === 0) return '';
+  var html = '<div class="related-posts"><h3>📖 相关文章</h3><div class="related-list">';
+  related.forEach(function(p) {
+    html += '<a href="blog.html?post=' + p.id + '" class="related-item">'
+          + '<span class="related-title">' + p.title + '</span>'
+          + '<span class="related-tags">' + (p.tags || []).join(' · ') + '</span>'
+          + '</a>';
+  });
+  html += '</div></div>';
+  return html;
+}
+
+function renderShare() {
+  var url = encodeURIComponent(window.location.href);
+  var title = encodeURIComponent(document.title);
+  return '<div class="share-bar">'
+       + '<span>分享到：</span>'
+       + '<a href="https://service.weibo.com/share/share.php?url=' + url + '&title=' + title + '" target="_blank" rel="noopener" class="share-btn weibo">微博</a>'
+       + '<a href="#" onclick="copyLink();return false;" class="share-btn copy">复制链接</a>'
+       + '</div>';
+}
+function copyLink() {
+  var input = document.createElement('input');
+  input.value = window.location.href;
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand('copy');
+  document.body.removeChild(input);
+  alert('链接已复制！');
+}
+
+function renderFavorite() {
+  var key = 'tom_fav_' + window.location.pathname;
+  var isFav = localStorage.getItem(key) === 'true';
+  return '<button class="fav-btn ' + (isFav ? 'fav' : '') + '" onclick="toggleFav()">'
+       + (isFav ? '❤️ 已收藏' : '🤍 收藏') + '</button>';
+}
+function toggleFav() {
+  var key = 'tom_fav_' + window.location.pathname;
+  var isFav = localStorage.getItem(key) === 'true';
+  localStorage.setItem(key, !isFav);
+  var btn = document.querySelector('.fav-btn');
+  btn.className = 'fav-btn ' + (!isFav ? 'fav' : '');
+  btn.textContent = !isFav ? '❤️ 已收藏' : '🤍 收藏';
+}
+
 </script>
 </body>
 </html>
