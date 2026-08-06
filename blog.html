@@ -474,6 +474,29 @@ if(document.readyState==="loading"){
   document.addEventListener("DOMContentLoaded",buildToc);
 } else { buildToc(); }
 
-<script src="assets/js/stats.js"></script>
+<script src="assets/js/stats.js">
+function buildPrevNext(currentId) {
+  var ids = ['001','002','003','004'];
+  var idx = ids.indexOf(currentId);
+  if (idx === -1) return '';
+  var html = '<div class="post-nav">';
+  if (idx > 0) {
+    html += '<a href="blog.html?post=' + ids[idx-1] + '" class="prev">← 上一篇</a>';
+  }
+  if (idx < ids.length - 1) {
+    html += '<a href="blog.html?post=' + ids[idx+1] + '" class="next">下一篇 →</a>';
+  }
+  html += '</div>';
+  return html;
+}
+
+
+function calcReadingTime(content) {
+  var words = content.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(function(w){return w.length > 0}).length;
+  var minutes = Math.ceil(words / 300);
+  return minutes + ' 分钟阅读';
+}
+
+</script>
 </body>
 </html>
