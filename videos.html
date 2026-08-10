@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>治愈系视频 · 打工人的一天</title>
+<meta name="description" content="20个打工人治愈系短视频合集">
+<style>
+:root{
+  --ink:#1a1a2e; --ink-muted:#4a4a6a; --ink-light:#7a7a9a;
+  --paper:#faf8f5; --paper-alt:#f0ebe0;
+  --accent:#a8885a; --accent-dark:#806835; --accent-light:#e8d8c0;
+  --line:#d8d0c0; --shadow:rgba(26,26,46,0.08);
+  --font-serif:"Noto Serif SC","Source Serif Pro",Georgia,serif;
+  --font-sans:"Noto Sans SC","Inter",-apple-system,sans-serif;
+  --max-width:900px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --ink:#f0ebe0; --ink-muted:#c8b8a0; --ink-light:#9a8a7a;
+    --paper:#1a1a2e; --paper-alt:#22223a;
+    --accent:#d8b88a; --accent-dark:#c8a87a; --accent-light:#5a4a3a;
+    --line:#3a3a5a; --shadow:rgba(0,0,0,0.3);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);color:var(--ink);background:var(--paper);
+  line-height:1.6;min-height:100vh;display:flex;flex-direction:column;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.site-header{padding:2rem 1rem;text-align:center;border-bottom:1px solid var(--line)}
+.site-title{font-family:var(--font-serif);font-size:1.8rem;font-weight:400;margin-bottom:0.5rem}
+.site-tagline{font-size:0.9rem;color:var(--ink-muted)}
+.nav{display:flex;gap:1rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
+.nav a{padding:6px 16px;border:1px solid var(--line);border-radius:999px;font-size:0.85rem;color:var(--ink-muted)}
+.nav a:hover,.nav a.current{background:var(--accent);color:var(--paper);border-color:var(--accent);text-decoration:none}
+
+.main{flex:1;padding:2rem 1rem;max-width:var(--max-width);margin:0 auto;width:100%}
+.video-section{margin-bottom:3rem}
+.video-section h2{font-family:var(--font-serif);font-size:1.3rem;margin-bottom:1rem;color:var(--ink)}
+.video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;background:var(--paper-alt)}
+.video-container video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.video-desc{margin-top:0.5rem;font-size:0.9rem;color:var(--ink-muted)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.grid-item{background:var(--paper-alt);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.grid-item video{width:100%;aspect-ratio:16/9;object-fit:cover}
+.grid-item .info{padding:0.75rem}
+.grid-item .title{font-size:0.85rem;color:var(--ink);margin-bottom:0.25rem}
+.grid-item .meta{font-size:0.75rem;color:var(--ink-light)}
+
+.footer{padding:1.5rem;text-align:center;font-size:0.8rem;color:var(--ink-light);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1 class="site-title">治愈系打工人视频</h1>
+  <p class="site-tagline">20个碎片里的光，攒着给明天</p>
+  <nav class="nav">
+    <a href="blog.html">日记</a>
+    <a href="topics.html">选题库</a>
+    <a href="hits.html">爆款库</a>
+    <a href="videos.html" class="current">视频</a>
+  </nav>
+</header>
+
+<main class="main">
+  <section class="video-section">
+    <h2>完整合集（1分30秒）</h2>
+    <div class="video-container">
+      <video controls preload="metadata">
+        <source src="assets/videos/治愈系打工人的一天.mp4" type="video/mp4">
+        您的浏览器不支持视频播放。
+      </video>
+    </div>
+    <p class="video-desc">20个治愈系短视频拼接而成，去水印版本</p>
+  </section>
+
+  <section class="video-section">
+    <h2>单个视频预览</h2>
+    <div class="grid">
+      <div class="grid-item">
+        <video controls preload="metadata"><source src="assets/videos/video_001.mp4" type="video/mp4"></video>
+        <div class="info"><div class="title">翠绿草原上的骏马</div><div class="meta">001 · 5秒</div></div>
+      </div>
+      <div class="grid-item">
+        <video controls preload="metadata"><source src="assets/videos/video_002.mp4" type="video/mp4"></video>
+        <div class="info"><div class="title">傍晚街角的糖炒栗子</div><div class="meta">002 · 5秒</div></div>
+      </div>
+      <div class="grid-item">
+        <video controls preload="metadata"><source src="assets/videos/video_005.mp4" type="video/mp4"></video>
+        <div class="info"><div class="title">雨后城市天台的霓虹</div><div class="meta">005 · 5秒</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>打工人的一天 · 碎片里的光</p>
+</footer>
+</body>
+</html>
