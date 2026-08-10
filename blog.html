@@ -362,7 +362,7 @@ if(params.has('post')){
     document.getElementById('post-list').style.display='none';
     const d = document.getElementById('post-detail');
     d.style.display='block';
-    document.body.classList.add('detail-mode');var imgsHtml = p.images ? '<div class="post-images">' + p.images.map(function(i){return '<img src="assets/"+i+' loading="lazy" alt="文章配图">';}).join('') + '</div>' : '';
+    document.body.classList.add('detail-mode');var imgsHtml = p.images ? '<div class="post-images">' + p.images.map(function(i){return '<img src="assets/'+i+'" loading="lazy" alt="文章配图">';}).join('') + '</div>' : '';
     d.innerHTML = '<a href="blog.html" class="back-link">返回列表</a><article><header class="post-header">' + imgsHtml + '<div class="post-meta"><time datetime="' + p.date + '">' + p.date + '</time>' + p.tags.map(function(t){return'<span class="tag">' + t + '</span>'}).join('') + '</div><h1>' + p.title + '</h1></header><div class="post-content">' + p.content.map(function(c){return'<p>' + c + '</p>'}).join('') + '</div></article>';
   }
 }
