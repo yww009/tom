@@ -297,6 +297,9 @@ blockquote.gold .copy-btn.copied{color:#3a8a4a;border-color:#3a8a4a}
   <div class="search-results" id="search-results"></div>
 </div>
 
+<div id="post-list"></div>
+<div id="post-detail" style="display:none"></div>
+
 </div>
 </div>
 </main>
@@ -556,6 +559,26 @@ function toggleFav() {
   btn.className = 'fav-btn ' + (!isFav ? 'fav' : '');
   btn.textContent = !isFav ? '❤️ 已收藏' : '🤍 收藏';
 }
+
+// 渲染文章列表
+function renderPosts() {
+  var list = document.getElementById('post-list');
+  if (!list) return;
+  var html = '';
+  Object.keys(posts).forEach(function(id) {
+    var p = posts[id];
+    html += '<div class="post-card">'
+      + '<div class="post-meta"><time datetime="' + p.date + '">' + p.date + '</time>'
+      + p.tags.map(function(t){return '<span class="tag">' + t + '</span>'}).join('')
+      + '</div>'
+      + '<h2 class="post-title"><a href="blog.html?post=' + id + '">' + p.title + '</a></h2>'
+      + '<p class="post-excerpt">' + p.content[0].substring(0, 80) + '...</p>'
+      + '<a href="blog.html?post=' + id + '" class="post-link">阅读全文 →</a>'
+      + '</div>';
+  });
+  list.innerHTML = html;
+}
+renderPosts();
 
 </script>
 </body>
