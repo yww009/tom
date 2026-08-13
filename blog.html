@@ -3,18 +3,293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>打工人的一天 · 测试</title>
+<title>打工人的一天 · 碎片里的光</title>
 <style>
-body { font-family: sans-serif; padding: 20px; background: #f5f0eb; }
-.post-card { border: 2px solid red; padding: 15px; margin: 10px 0; background: white; }
-h1 { color: #333; font-size: 24px; }
+:root{
+  --ink:#1a1a2e; --ink-muted:#4a4a6a; --ink-light:#7a7a9a;
+  --paper:#faf8f5; --paper-alt:#f0ebe0; --paper-dark:#e8e0d0;
+  --accent:#a8885a; --accent-dark:#806835; --accent-light:#e8d8c0;
+  --line:#d8d0c0; --shadow:rgba(26,26,46,0.08);
+  --font-serif:"Noto Serif SC","Source Serif Pro",Georgia,serif;
+  --font-sans:"Noto Sans SC","Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-mono:"JetBrains Mono","Fira Code",monospace;
+  --space-1:0.25rem; --space-2:0.5rem; --space-3:1rem; --space-4:1.5rem;
+  --space-5:2rem; --space-6:3rem; --space-7:4rem; --space-8:6rem;
+  --radius:4px; --transition:0.3s ease;
+  --max-width:720px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --ink:#f0ebe0; --ink-muted:#c8b8a0; --ink-light:#9a8a7a;
+    --paper:#1a1a2e; --paper-alt:#22223a; --paper-dark:#2a2a4a;
+    --accent:#d8b88a; --accent-dark:#c8a87a; --accent-light:#5a4a3a;
+    --line:#3a3a5a; --shadow:rgba(0,0,0,0.3);
+  }
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{
+  font-family:var(--font-sans);font-size:16px;line-height:1.8;
+  color:var(--ink);background-color:var(--paper);
+  min-height:100vh;display:flex;flex-direction:column;
+}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color var(--transition)}
+a:hover{border-bottom-color:var(--accent)}
+img{max-width:100%;height:auto;border-radius:var(--radius)}
+h1,h2,h3,h4{font-family:var(--font-serif);font-weight:500;line-height:1.4;color:var(--ink)}
+h1{font-size:clamp(2rem,5vw,3rem);letter-spacing:-0.02em;margin-bottom:var(--space-2)}
+h2{font-size:clamp(1.5rem,3.5vw,2rem);margin:var(--space-6) 0 var(--space-3)}
+h3{font-size:clamp(1.15rem,2.5vw,1.35rem);margin:var(--space-5) 0 var(--space-2)}
+p{margin-bottom:var(--space-3);text-wrap:pretty}
+.lead{font-family:var(--font-serif);font-size:1.15rem;line-height:1.9;color:var(--ink-muted);margin-bottom:var(--space-4)}
+.small{font-size:0.875rem;color:var(--ink-light)}
+
+.site-header{padding:var(--space-7) var(--space-4) var(--space-5);max-width:var(--max-width);margin:0 auto;width:100%}
+.site-main{flex:1;padding:0 var(--space-4) var(--space-8);max-width:var(--max-width);margin:0 auto;width:100%}
+.site-footer{padding:var(--space-5) var(--space-4);border-top:1px solid var(--line);text-align:center;font-size:0.85rem;color:var(--ink-light)}
+
+.site-title{font-family:var(--font-serif);font-size:clamp(1.5rem,4vw,2.5rem);font-weight:400;color:var(--ink);margin-bottom:var(--space-1)}
+.site-tagline{font-size:0.95rem;color:var(--ink-light);letter-spacing:0.05em;text-transform:lowercase}
+.nav{display:flex;gap:var(--space-5);margin-top:var(--space-5);flex-wrap:wrap}
+.nav a{font-size:0.9rem;color:var(--ink-muted);padding-bottom:2px}
+.nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.nav a.current{color:var(--ink);border-bottom-color:var(--ink);pointer-events:none}
+
+.with-sidebar{display:grid;grid-template-columns:1fr 220px;gap:var(--space-6);align-items:start}
+@media(max-width:900px){.with-sidebar{grid-template-columns:1fr}}
+.sidebar{position:sticky;top:var(--space-4);padding:var(--space-4);background:var(--paper-alt);border:1px solid var(--line);border-radius:var(--radius)}
+.sidebar h3{font-size:0.95rem;margin:0 0 var(--space-2);color:var(--ink);text-transform:uppercase;letter-spacing:0.08em;font-family:var(--font-sans);font-weight:600}
+.sidebar ul{list-style:none;padding:0;margin:0 0 var(--space-4)}
+.sidebar li{margin:6px 0;font-size:0.9rem}
+.sidebar a{color:var(--ink-muted);border-bottom:none}
+.sidebar a:hover{color:var(--accent)}
+.sidebar a.current{color:var(--ink);font-weight:500}
+
+.post-card{background:var(--paper-alt);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-5);margin-bottom:var(--space-4);transition:box-shadow var(--transition),transform var(--transition)}
+.post-card:hover{box-shadow:0 8px 24px var(--shadow);transform:translateY(-2px)}
+.post-meta{display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-2);font-size:0.8rem;color:var(--ink-light);align-items:center}
+.post-meta time{font-family:var(--font-mono)}
+.post-meta .tag{background:var(--accent-light);color:var(--accent-dark);padding:2px 8px;border-radius:999px;font-size:0.7rem;letter-spacing:0.03em}
+.post-title{font-family:var(--font-serif);font-size:1.35rem;font-weight:500;color:var(--ink);margin-bottom:var(--space-2);line-height:1.4}
+.post-excerpt{color:var(--ink-muted);line-height:1.8;margin-bottom:var(--space-3)}
+.post-link{display:inline-flex;align-items:center;gap:6px;font-size:0.9rem;color:var(--accent);font-weight:500}
+.post-link::after{content:"→";transition:transform var(--transition)}
+.post-link:hover::after{transform:translateX(4px)}
+
+.post-header{margin-bottom:var(--space-6);padding-bottom:var(--space-5);border-bottom:1px solid var(--line)}
+.post-content{font-family:var(--font-serif);font-size:1.05rem;line-height:2}
+.post-content p{margin-bottom:var(--space-4)}
+.post-content .pause{display:block;height:1.5em}
+.post-footer{margin-top:var(--space-7);padding-top:var(--space-5);border-top:1px solid var(--line)}
+.post-tags{display:flex;gap:var(--space-2);flex-wrap:wrap}
+.post-tags a{background:var(--paper-alt);border:1px solid var(--line);padding:4px 12px;border-radius:999px;font-size:0.8rem;color:var(--ink-muted)}
+.post-tags a:hover{background:var(--accent-light);border-color:var(--accent);color:var(--accent-dark)}
+
+.hero{margin-bottom:var(--space-7)}
+.hero p{font-family:var(--font-serif);font-size:1.1rem;line-height:1.9;color:var(--ink-muted)}
+
+.back-link{display:inline-flex;align-items:center;gap:6px;margin-bottom:var(--space-5);font-size:0.9rem;color:var(--ink-muted)}
+.back-link::before{content:"←"}
+
+.tweaks{position:fixed;bottom:var(--space-4);right:var(--space-4);z-index:100;background:var(--paper-alt);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-3);box-shadow:0 8px 24px var(--shadow);font-size:0.8rem}
+.tweaks summary{cursor:pointer;color:var(--ink-muted);font-weight:500}
+.tweaks[open] summary{color:var(--ink);margin-bottom:var(--space-2)}
+.tweaks label{display:flex;align-items:center;gap:8px;margin:6px 0;cursor:pointer}
+.tweaks input[type="range"]{width:120px}
+.tweaks .reset{margin-top:var(--space-2);padding:4px 10px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);cursor:pointer;font-size:0.75rem}
+.tweaks .reset:hover{background:var(--accent-light);border-color:var(--accent)}
+
+.topic-list,.hit-list{display:flex;flex-direction:column;gap:var(--space-3)}
+.topic-item,.hit-item{background:var(--paper-alt);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-4);transition:box-shadow var(--transition)}
+.topic-item:hover,.hit-item:hover{box-shadow:0 4px 16px var(--shadow)}
+.topic-meta,.hit-meta{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-bottom:var(--space-2);font-size:0.75rem;color:var(--ink-light);align-items:center}
+.topic-meta .badge,.hit-meta .badge{background:var(--accent-light);color:var(--accent-dark);padding:2px 8px;border-radius:999px;letter-spacing:0.03em}
+.topic-meta .status-done,.hit-meta .status-done{background:#d8e8d0;color:#3a6a2a;padding:2px 8px;border-radius:999px}
+.topic-meta .status-todo,.hit-meta .status-todo{background:#e8d8d0;color:#8a4a2a;padding:2px 8px;border-radius:999px}
+.topic-title,.hit-title{font-family:var(--font-serif);font-size:1.15rem;font-weight:500;color:var(--ink);margin-bottom:var(--space-2);line-height:1.4}
+.topic-hook,.hit-hook{color:var(--ink-muted);font-size:0.95rem;line-height:1.7;margin-bottom:var(--space-2)}
+.topic-notes,.hit-notes{color:var(--ink-light);font-size:0.85rem;font-style:italic;padding-left:var(--space-3);border-left:2px solid var(--accent-light);margin-top:var(--space-2)}
+
+.filter-bar{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-bottom:var(--space-4)}
+.filter-btn{background:var(--paper-alt);border:1px solid var(--line);padding:6px 14px;border-radius:999px;font-size:0.85rem;color:var(--ink-muted);cursor:pointer;transition:all var(--transition)}
+.filter-btn:hover{background:var(--accent-light);color:var(--accent-dark);border-color:var(--accent)}
+.filter-btn.active{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+
+.section-divider{margin:var(--space-6) 0;border:none;border-top:1px dashed var(--line)}
+
+@media(max-width:600px){
+  :root{--max-width:100%}
+  .tweaks{bottom:var(--space-2);right:var(--space-2);left:var(--space-2)}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+}
+
+body.detail-mode{background-color:var(--paper)!important}
+
+.fade-bg body{animation:fadeBg 1.2s ease both}
+@keyframes fadeBg{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.fade-bg body{animation:none}}
+
+.back-top{
+  position:fixed;bottom:var(--space-4);left:var(--space-4);
+  width:42px;height:42px;border-radius:50%;
+  background:var(--paper-alt);border:1px solid var(--line);
+  color:var(--ink-muted);font-size:1.2rem;
+  cursor:pointer;opacity:0;pointer-events:none;
+  transition:opacity .3s ease,transform .3s ease,color .3s ease;
+  z-index:99;
+}
+.back-top.show{opacity:1;pointer-events:auto}
+.back-top:hover{color:var(--accent);transform:translateY(-2px)}
+
+.read-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),#d8b88a);z-index:200;transition:width .1s ease}
+
+.blockquote.gold{
+  position:relative;margin:var(--space-4) 0;padding:var(--space-3) var(--space-4);
+  background:var(--paper-alt);border-left:3px solid var(--accent);
+  font-family:var(--font-serif);color:var(--ink);font-style:normal;
+  border-radius:0 var(--radius) var(--radius) 0;
+}
+.blockquote.gold .copy-btn{
+  position:absolute;top:8px;right:8px;background:var(--paper);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:3px 10px;font-size:.75rem;color:var(--ink-muted);
+  cursor:pointer;opacity:0;transition:opacity .3s ease,color .3s ease;
+}
+.blockquote.gold:hover .copy-btn{opacity:1}
+.blockquote.gold .copy-btn:hover{color:var(--accent)}
+.blockquote.gold .copy-btn.copied{color:#3a8a4a;border-color:#3a8a4a}
+
+.search-box{margin-bottom:var(--space-4);position:relative}
+.search-input{width:100%;padding:10px 14px 10px 38px;background:var(--paper-alt);border:1px solid var(--line);border-radius:var(--radius);font-size:0.95rem;color:var(--ink);font-family:var(--font-sans)}
+.search-input:focus{outline:none;border-color:var(--accent);background:var(--paper)}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-light);font-size:0.9rem;pointer-events:none}
+.search-results{position:absolute;top:100%;left:0;right:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);margin-top:4px;max-height:360px;overflow-y:auto;z-index:50;box-shadow:0 8px 24px var(--shadow);display:none}
+.search-results.show{display:block}
+.search-result{padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer}
+.search-result:hover{background:var(--paper-alt)}
+.search-result:last-child{border-bottom:none}
+.search-result h4{font-family:var(--font-serif);font-size:1rem;margin:0 0 4px;color:var(--ink)}
+.search-result p{margin:0;font-size:0.85rem;color:var(--ink-muted);line-height:1.5}
+.search-empty{padding:20px 14px;color:var(--ink-light);text-align:center;font-size:0.9rem}
+
+.toc{background:var(--paper-alt);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space-3) var(--space-4);margin-bottom:var(--space-4);font-size:0.9rem}
+.toc-title{font-family:var(--font-sans);font-weight:600;color:var(--ink);margin-bottom:8px;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em}
+.toc ol{margin:0;padding-left:20px;color:var(--ink-muted)}
+.toc li{margin:4px 0;line-height:1.6}
+.toc a{color:var(--ink-muted);border-bottom:none}
+.toc a:hover{color:var(--accent)}
+
+.post-images{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:var(--space-4)}
+.post-images img{width:100%;height:140px;object-fit:cover;border-radius:4px;background:var(--paper-alt)}
+@media(max-width:600px){.post-images{grid-template-columns:1fr}}
 </style>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#a8885a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="打工人">
+<link rel="apple-touch-icon" href="/assets/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap"></noscript>
 </head>
 <body>
-<h1>测试标题 - 如果看到这说明 HTML 正常</h1>
-<div id="post-list" style="border:1px solid blue; padding:10px;"></div>
+<header class="site-header">
+  <h1 class="site-title">打工人的一天</h1>
+  <p class="site-tagline">碎片里的光，攒着给明天</p>
+  <nav class="nav">
+    <a href="blog.html" class="current">📝 日记</a>
+    <a href="topics.html">📚 选题库</a>
+    <a href="hits.html">🔥 爆款库</a>
+    <a href="videos.html">🎬 视频</a>
+    <a href="https://github.com/yww009/tom" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="site-main">
+<div class="with-sidebar">
+<div>
+<div class="search-box">
+  <span class="search-icon">🔍</span>
+  <input type="search" class="search-input" id="search-input" placeholder="搜索文章 / 选题 / 爆款..." autocomplete="off">
+  <div class="search-results" id="search-results"></div>
+</div>
+<div id="post-list"></div>
+<div id="post-detail" style="display:none"></div>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<p>用 <a href="https://github.com/yww009/tom" target="_blank" rel="noopener">Hermes Agent</a> 搭建</p>
+</footer>
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">↑</button>
 <script>
-document.getElementById('post-list').innerHTML = '<div class="post-card"><h2>测试文章</h2><p>这是测试内容</p></div>';
+const posts = {
+  '001':{title:'早晨六点半的闹钟响第二遍',date:'2026-07-30',tags:['打工人的一天','治愈'],images:['scene-shoes.webp','scene-coffee.webp','scene-subway.webp'],content:[
+    '窗外的天还压着一层没褪干净的蓝。',
+    '出门前在玄关换鞋，听见厨房水壶咕嘟咕嘟冒泡，是昨晚忘了关的那壶水。地铁口的早风刮过来，带着一点点深秋的凉，把没睡醒的脸刮清醒了一点。',
+    '工位上的咖啡杯印还在，昨天走得太急忘了洗。中午食堂的阿姨照例多舀了一勺，"瘦了，多吃点"，没人问她累不累，但有人记得她还没吃饭。',
+    '<span class="pause"></span>',
+    '下午三点最难熬，眼睛盯着屏幕，耳边的键盘声忽然就变成了白噪音。下班那一刻是每天最亮的一瞬——地铁玻璃映出自己的影子，才发现今天穿的外套，是早上随手抓的那件。',
+    '副业搞钱的人，没有真正的"下班"。',
+    '晚上 11 点，娃睡了，世界终于安静下来。台灯暖光落下来，摊开笔记本，写了两行今天的副业进度。窗外的月亮悄悄爬到了楼顶上，跟那天发给我的第 12 句一样。',
+    '——不是不累，是累的时候，刚好也在为自己攒。'
+  ]},
+  '002':{title:'晚上 11 点，世界安静了，副业才刚刚开始',date:'2026-07-28',tags:['副业','碎碎念'],images:['scene-lamp.webp','scene-moon.webp','scene-chestnut.webp'],content:[
+    '娃睡了，世界终于安静下来。台灯暖光落下来，摊开笔记本，写了两行今天的副业进度。窗外的月亮悄悄爬到了楼顶上。',
+    '这一天：早上在地铁上刷到一个选题，中午食堂排队时在手机上记了三句开头，下午开会摸鱼时把大纲列好了。',
+    '副业不是额外的负担，是唯一属于自己的呼吸孔。没人催稿，没人考核，只有自己跟自己较劲。',
+    '冰箱里还躺着半罐没喝完的冰汽水，气泡在玻璃杯里往上冒，一声声轻响，像在为这几个小时鼓掌。',
+    '攒下来的钱，不多，但每一笔都写着自己的名字。'
+  ]},
+  '003':{title:'老巷口的修鞋匠，和被拉长的棉线',date:'2026-07-25',tags:['治愈','碎碎念'],images:['scene-coin.webp','scene-leaf.webp','scene-alley.webp'],content:[
+    '戴着老花镜穿针，脚边的收音机咿咿呀呀唱着旧戏。时光在这里慢得像被拉长的棉线。',
+    '把鞋递过去时，指尖碰到他满是茧子的手心，粗糙、温热、稳当。',
+    '"这鞋底还能再穿两年，别换。" 他头也不抬，动作利索得像在做手术。',
+    '等鞋的二十分钟，没刷手机。看他在灯光下弯腰、穿针、拉线、打结，每一个动作都沉得住气。',
+    '取鞋时多给了五块，他说不用。我把钱塞进他工具盒里最角落的格子，像塞进一个不想被遗忘的秘密。',
+    '走出巷口，风里混着桂花香，脚下踩实了，心也实了。'
+  ]},
+  '004':{title:'下午三点最难熬，键盘声变成了白噪音',date:'2026-07-22',tags:['打工人的一天'],images:['scene-coffee.webp','scene-cat.webp','scene-rice.webp'],content:[
+    '眼睛盯着屏幕，脑子里已经在想晚上吃啥。下班那一刻是每天最亮的一瞬。',
+    '会议室的空调吹得人发冷，PPT 翻到第 37 页，有人在角落偷偷回微信。我把笔记本合上，在空白页画了只猫——蜷在墙头上，正慢悠悠舔着沾了落日的爪子。',
+    '地铁玻璃映出自己的影子，才发现今天穿的外套，是早上随手抓的那件。口袋里还揣着半包没吃完的糖炒栗子，攥在手心，余温还在。',
+    '路过便利店买罐冰汽水，气泡炸开在舌尖，甜度刚好冲淡了一天的咸味。',
+    '到家不开灯，靠着阳台发呆。春天的第一阵风吹过，挂着的白衬衫晃了晃，沾了满襟刚开的茉莉的香。'
+  ]}
+};
+const params = new URLSearchParams(location.search);
+if(params.has('post')){
+  const p = posts[params.get('post')];
+  if(p){
+    document.getElementById('post-list').style.display='none';
+    const d = document.getElementById('post-detail');
+    d.style.display='block';
+    document.body.classList.add('detail-mode');
+    var imgsHtml = p.images ? '<div class="post-images">' + p.images.map(function(i){return '<img src="assets/'+i+'" loading="lazy" alt="文章配图">';}).join('') + '</div>' : '';
+    d.innerHTML = '<a href="blog.html" class="back-link">返回列表</a><article><header class="post-header">' + imgsHtml + '<div class="post-meta"><time datetime="' + p.date + '">' + p.date + '</time>' + p.tags.map(function(t){return'<span class="tag">' + t + '</span>'}).join('') + '</div><h1>' + p.title + '</h1></header><div class="post-content">' + p.content.map(function(c){return'<p>' + c + '</p>'}).join('') + '</div></article>';
+  }
+}
+function renderPosts(){
+  var list = document.getElementById('post-list');
+  if(!list)return;
+  var html='';
+  Object.keys(posts).forEach(function(id){
+    var p = posts[id];
+    html += '<div class="post-card">'
+      + '<div class="post-meta"><time datetime="'+p.date+'">'+p.date+'</time>'
+      + p.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join('')
+      + '</div>'
+      + '<h2 class="post-title"><a href="blog.html?post='+id+'">'+p.title+'</a></h2>'
+      + '<p class="post-excerpt">'+p.content[0].substring(0,80)+'...</p>'
+      + '<a href="blog.html?post='+id+'" class="post-link">阅读全文 →</a>'
+      + '</div>';
+  });
+  list.innerHTML = html;
+}
+renderPosts();
 </script>
 </body>
 </html>
