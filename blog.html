@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>打工人的一天</title>
+<title>打工人的一天 · 测试</title>
 <style>
 body { font-family: sans-serif; padding: 20px; background: #f5f0eb; }
 .post-card { border: 2px solid red; padding: 15px; margin: 10px 0; background: white; }
@@ -12,11 +12,8 @@ h1 { color: #333; font-size: 24px; }
 </head>
 <body>
 <h1>测试标题 - 如果看到这说明 HTML 正常</h1>
-<div id="post-list" style="border:1px solid blue; padding:10px;">
-<p style="color:red;">如果看到这个，说明 JavaScript 有问题</p>
-</div>
+<div id="post-list" style="border:1px solid blue; padding:10px;"></div>
 <script>
-console.log('页面加载完成');
 document.getElementById('post-list').innerHTML = '<div class="post-card"><h2>测试文章</h2><p>这是测试内容</p></div>';
 </script>
 </body>
