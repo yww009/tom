@@ -5,7 +5,35 @@
     <link>https://cdn.jsdelivr.net/gh/yww009/tom@main/blog.html</link>
     <description>25-35 岁打工人偷来的瞬间 —— 副业、治愈、碎碎念。</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 13 Aug 2026 03:00:53 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2026 03:00:02 +0000</lastBuildDate>
     <atom:link href="https://cdn.jsdelivr.net/gh/yww009/tom@main/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>早晨六点半的闹钟响第二遍</title>
+      <link>https://yww009.github.io/tom/blog.html?post=001</link>
+      <guid isPermaLink="true">https://yww009.github.io/tom/blog.html?post=001</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <description>早晨六点半的闹钟响第二遍</description>
+    </item>
+    <item>
+      <title>晚上 11 点，世界安静了，副业才刚刚开始</title>
+      <link>https://yww009.github.io/tom/blog.html?post=002</link>
+      <guid isPermaLink="true">https://yww009.github.io/tom/blog.html?post=002</guid>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+      <description>晚上 11 点，世界安静了，副业才刚刚开始</description>
+    </item>
+    <item>
+      <title>老巷口的修鞋匠，和被拉长的棉线</title>
+      <link>https://yww009.github.io/tom/blog.html?post=003</link>
+      <guid isPermaLink="true">https://yww009.github.io/tom/blog.html?post=003</guid>
+      <pubDate>Sat, 25 Jul 2026 00:00:00 +0000</pubDate>
+      <description>老巷口的修鞋匠，和被拉长的棉线</description>
+    </item>
+    <item>
+      <title>下午三点最难熬，键盘声变成了白噪音</title>
+      <link>https://yww009.github.io/tom/blog.html?post=004</link>
+      <guid isPermaLink="true">https://yww009.github.io/tom/blog.html?post=004</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      <description>下午三点最难熬，键盘声变成了白噪音</description>
+    </item>
   </channel>
 </rss>
